@@ -29,6 +29,17 @@ public class Customer {
         this.email = email;
     }
 
+    // Parameterized constructor with all fields, to use before database access is set
+    public Customer(long id, long customerNo, String fName, String lName, LocalDate dateOfBirth, String ssn, String address, String email) {
+        this.id = id;
+        this.customerNo = customerNo;
+        this.fName = fName;
+        this.lName = lName;
+        this.dateOfBirth = dateOfBirth;
+        this.ssn = ssn;
+        this.address = address;
+        this.email = email;
+    }
 
     // Getters and setters
     public long getId() {
