@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
+// "Api layer"
+
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
 @RequestMapping(path = "/start") // Either use this main routing for whole class or specify at endpoint methods
 public class CustomerController {
@@ -13,8 +15,8 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @Autowired
-    // "auto-instantiate" custoemrservice;, we dont need the keyword new etc)
-    // also need to add @Component to CustomerService class
+    // "auto-instantiate" customerservice (we dont need the keyword new etc)
+    // also need to add @Component or @Service in CustomerService class
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }

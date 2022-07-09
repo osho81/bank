@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
+// "Service layer"; between Api and data access.
+
 @Service // Enables @Autowired in this class' references in other classes
 // @Component is similar to @Service but Service is more specific to this usage
 public class CustomerService {
