@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
-// "Api layer"
+// "Api layer"; controls endpoints, routing etc.
+// (while service have more specific methods such as CRUD operations)
 
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
 @RequestMapping(path = "/start") // Either use this main routing for whole class or specify at endpoint methods
