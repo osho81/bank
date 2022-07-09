@@ -2,6 +2,7 @@ package com.yaelev.bank.customer;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 // Part of "Model"; POJO
@@ -118,7 +119,7 @@ public class Customer {
     }
 
     public int getAge() {
-        return age;
+        return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
     }
 
     public void setAge(int age) {

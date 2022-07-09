@@ -30,17 +30,17 @@ public class CustomerConfig {
                     2002,
                     "Mickey",
                     "Mouse",
-                    LocalDate.of(1990, Month.MAY, 5),
+                    LocalDate.of(1980, Month.JUNE, 6),
                     "800606-4175",
                     "First street 1",
                     "mickey@gmail.com"
             );
 
             Customer minnie = new Customer(
-                    2002,
+                    2007,
                     "Minnie",
                     "Mouse",
-                    LocalDate.of(1990, Month.MAY, 5),
+                    LocalDate.of(1985, Month.JULY, 7),
                     "850707-5565",
                     "First street 2",
                     "minnie@gmail.com"
