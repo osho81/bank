@@ -38,7 +38,7 @@ public class CustomerService {
         }
     }
 
-    public void deleteCustomer(Long customerId){
+    public void deleteCustomer(Long customerId) {
         Optional<Customer> customerExists = customerRepository.findById(customerId);
         if (customerExists.isPresent()) { // If returned container is not empty...
             customerRepository.deleteById(customerId);
@@ -52,18 +52,23 @@ public class CustomerService {
     public void updateCustomer(Long customerId, String email, String address) {
         // id to find customer
         Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
-            new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
+                new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
 
-        // If email is entered & it is not as previous email, set new email
+        // If email is entered & it is not as previous email, then set new email
         if (email != null && email.contains("@") &&
                 !Objects.equals(customer.getEmail(), email)) {
-            customer.setEmail(email);
+            // AND if is not used by another customer, then set new address
+            Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+            if (foundEmail.isPresent()) {
+                throw new IllegalStateException(foundEmail + " is used by another user");
+            } else {
+                customer.setEmail(email);
+            }
         }
 
-        // If address is entered & it is not as previous address, set new address
-        if (email != null && email.contains("@") &&
-                !Objects.equals(customer.getEmail(), email)) {
-            customer.setEmail(email);
+        // If address is entered & it is not as previous address, then set new address
+        if (address != null && !Objects.equals(customer.getAddress(), address)) {
+            customer.setAddress(address);
         }
     }
 
