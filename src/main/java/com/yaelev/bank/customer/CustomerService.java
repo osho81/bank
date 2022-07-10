@@ -48,17 +48,16 @@ public class CustomerService {
 
     }
 
-    @Transient // No need to store anything in DB here
+    //@Transient
     public void updateCustomer(Long customerId, String email, String address) {
         // id to find customer
         Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
                 new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
 
         // If email is entered & it is not as previous email, then set new email
-        if (email != null && email.contains("@") &&
-                !Objects.equals(customer.getEmail(), email)) {
-            // AND if is not used by another customer, then set new address
-            Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+        if (email != null && !Objects.equals(customer.getEmail(), email)) {
+            // AND if email is not used by another customer, then set new address
+            Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(email);
             if (foundEmail.isPresent()) {
                 throw new IllegalStateException(foundEmail + " is used by another user");
             } else {
@@ -70,6 +69,10 @@ public class CustomerService {
         if (address != null && !Objects.equals(customer.getAddress(), address)) {
             customer.setAddress(address);
         }
+
+        customerRepository.save(customer); // Save the new set columns/variables
+
     }
+
 
 }
