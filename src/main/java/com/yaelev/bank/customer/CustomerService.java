@@ -3,9 +3,9 @@ package com.yaelev.bank.customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Month;
+import javax.persistence.Transient;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 // "Service layer"; between Api and data access;
@@ -28,7 +28,7 @@ public class CustomerService {
         return (List<Customer>) customerRepository.findAll();
     }
 
-    public void addNewCustomer(Customer customer) {
+    public void registerNewCustomer(Customer customer) {
         Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(customer.getEmail());
         if (foundEmail.isPresent()) { // If returned container is not empty...
             throw new IllegalStateException(foundEmail + " is used by another user");
@@ -38,7 +38,7 @@ public class CustomerService {
         }
     }
 
-    public void removeCustomer(Long customerId){
+    public void deleteCustomer(Long customerId){
         Optional<Customer> customerExists = customerRepository.findById(customerId);
         if (customerExists.isPresent()) { // If returned container is not empty...
             customerRepository.deleteById(customerId);
@@ -46,6 +46,25 @@ public class CustomerService {
             throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
         }
 
+    }
+
+    @Transient // No need to store anything in DB here
+    public void updateCustomer(Long customerId, String email, String address) {
+        // id to find customer
+        Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
+            new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
+
+        // If email is entered & it is not as previous email, set new email
+        if (email != null && email.contains("@") &&
+                !Objects.equals(customer.getEmail(), email)) {
+            customer.setEmail(email);
+        }
+
+        // If address is entered & it is not as previous address, set new address
+        if (email != null && email.contains("@") &&
+                !Objects.equals(customer.getEmail(), email)) {
+            customer.setEmail(email);
+        }
     }
 
 }

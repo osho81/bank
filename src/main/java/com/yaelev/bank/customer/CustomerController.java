@@ -32,13 +32,22 @@ public class CustomerController {
 
     @PostMapping // @RequestBody is for input
     public void registerNewCustomer(@RequestBody Customer customer) {
-        customerService.addNewCustomer(customer);
+        customerService.registerNewCustomer(customer);
     }
 
     @DeleteMapping(path = "{customerId}") // i.e.: URL/id
     public void deleteCustomer(@PathVariable("customerId") Long customerId) { // extracts id-part
-        customerService.removeCustomer(customerId); // Operate on the extracted id-part
+        customerService.deleteCustomer(customerId); // Operate on the extracted id-part
     }
 
+    @PutMapping(path = "{customerId}")
+    public void updateCustomer( // Extract id, and optional email & address paras
+            @PathVariable("customerId") Long customerId,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String address) {
+        // id to find customer; email/address to change if customer exists
+        customerService.updateCustomer(customerId, email, address);
+
+    }
 
 }
