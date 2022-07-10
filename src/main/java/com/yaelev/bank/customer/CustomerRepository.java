@@ -1,5 +1,6 @@
 package com.yaelev.bank.customer;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
@@ -10,6 +11,8 @@ import java.util.Optional;
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     // Customized operations and queries
+    @Query("select c from Customer c where c.email = ?1")
     Optional<Customer> findCustomerByEmail(String email); // Container
+
 }
 

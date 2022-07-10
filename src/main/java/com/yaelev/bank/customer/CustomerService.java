@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 // "Service layer"; between Api and data access;
 // Services such as CRUD operations.
@@ -28,7 +29,13 @@ public class CustomerService {
     }
 
     public void addNewCustomer(Customer customer) {
-        System.out.println("new customer added");
+        Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+        if (foundEmail.isPresent()) {
+            throw new IllegalStateException(foundEmail + " is used by another user");
+        } else {
+            System.out.println("new customer added; " + customer);
+            customerRepository.save(customer);
+        }
     }
 
 
