@@ -41,9 +41,6 @@ public class CustomerService {
 
 
 
-    // Test method before db is connected and mapped; testing web functions
-/*    public List<Customer> getCustomers() {
-        return List.of(new Customer(10, "Donald", "Duck", LocalDate.of(1990, Month.MAY, 5),
-                "900505-7346", "Second street 1", "donaldduck@gmail.com"));
-    }*/
+
+
 }
