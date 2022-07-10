@@ -35,9 +35,9 @@ public class CustomerController {
         customerService.addNewCustomer(customer);
     }
 
-    @DeleteMapping(path = "{customerId}")
-    public void deleteCustomer(@PathVariable("customerId") Long customerId) {
-        customerService.removeCustomer(customerId);
+    @DeleteMapping(path = "{customerId}") // i.e.: URL/id
+    public void deleteCustomer(@PathVariable("customerId") Long customerId) { // extracts id-part
+        customerService.removeCustomer(customerId); // Operate on the extracted id-part
     }
 
 

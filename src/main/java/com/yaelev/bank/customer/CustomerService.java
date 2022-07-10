@@ -30,7 +30,7 @@ public class CustomerService {
 
     public void addNewCustomer(Customer customer) {
         Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(customer.getEmail());
-        if (foundEmail.isPresent()) { // If returned method result is not empty...
+        if (foundEmail.isPresent()) { // If returned container is not empty...
             throw new IllegalStateException(foundEmail + " is used by another user");
         } else {
             System.out.println("new customer added; " + customer);
@@ -40,7 +40,7 @@ public class CustomerService {
 
     public void removeCustomer(Long customerId){
         Optional<Customer> customerExists = customerRepository.findById(customerId);
-        if (customerExists.isPresent()) {
+        if (customerExists.isPresent()) { // If returned container is not empty...
             customerRepository.deleteById(customerId);
         } else {
             throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
