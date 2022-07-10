@@ -38,9 +38,14 @@ public class CustomerService {
         }
     }
 
+    public void removeCustomer(Long customerId){
+        Optional<Customer> customerExists = customerRepository.findById(customerId);
+        if (customerExists.isPresent()) {
+            customerRepository.deleteById(customerId);
+        } else {
+            throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
+        }
 
-
-
-
+    }
 
 }

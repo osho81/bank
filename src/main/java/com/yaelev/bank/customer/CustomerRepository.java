@@ -10,6 +10,7 @@ import java.util.Optional;
 // Specify class to service with CRUD methods etc., and specify Id type
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
+
     // Customized operations and queries
 
     // @Query("select c from Customer c where c.email = ?1")
