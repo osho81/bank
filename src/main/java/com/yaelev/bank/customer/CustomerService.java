@@ -30,7 +30,7 @@ public class CustomerService {
 
     public void addNewCustomer(Customer customer) {
         Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(customer.getEmail());
-        if (foundEmail.isPresent()) {
+        if (foundEmail.isPresent()) { // If returned method result is not empty...
             throw new IllegalStateException(foundEmail + " is used by another user");
         } else {
             System.out.println("new customer added; " + customer);
