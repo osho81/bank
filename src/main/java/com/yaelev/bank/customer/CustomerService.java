@@ -27,6 +27,12 @@ public class CustomerService {
         return (List<Customer>) customerRepository.findAll();
     }
 
+    public void addNewCustomer(Customer customer) {
+        System.out.println("new customer added");
+    }
+
+
+
 
     // Test method before db is connected and mapped; testing web functions
 /*    public List<Customer> getCustomers() {

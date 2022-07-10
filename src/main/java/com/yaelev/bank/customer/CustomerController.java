@@ -1,9 +1,8 @@
 package com.yaelev.bank.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 // "Api layer"; controls endpoints, routing etc.
@@ -30,4 +29,11 @@ public class CustomerController {
     public List<Customer> customers() {
         return customerService.getCustomers();
     }
+
+    @PostMapping // @RequestBody is for input
+    public void registerNewCustomer(@RequestBody Customer customer) {
+        customerService.addNewCustomer(customer);
+    }
+
+
 }

@@ -6,5 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 
 // Specify class to service with CRUD methods etc., and specify Id type
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
+
+    // Customizedd operations and queries
+
+
 }
 
