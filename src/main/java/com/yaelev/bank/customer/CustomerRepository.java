@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     // Customized operations and queries
-    @Query("select c from Customer c where c.email = ?1")
+    // @Query("select c from Customer c where c.email = ?1")
     Optional<Customer> findCustomerByEmail(String email); // Container
 
 }
