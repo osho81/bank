@@ -48,7 +48,7 @@ public class CustomerService {
 
     }
 
-    //@Transient
+    @Transient
     public void updateCustomer(Long customerId, String email, String address) {
         // id to find customer
         Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
