@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Transient;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -48,7 +49,7 @@ public class CustomerService {
 
     }
 
-    @Transient
+    @Transactional // JPA/hibernate management state
     public void updateCustomer(Long customerId, String email, String address) {
         Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
                 new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
@@ -69,7 +70,7 @@ public class CustomerService {
             customer.setAddress(address);
         }
 
-        customerRepository.save(customer); // Save the new set columns/variables
+        // customerRepository.save(customer); // Save the new set columns/variables
 
     }
 
