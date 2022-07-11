@@ -50,13 +50,12 @@ public class CustomerService {
 
     @Transient
     public void updateCustomer(Long customerId, String email, String address) {
-        // id to find customer
         Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
                 new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
 
-        // If email is entered & it is not as previous email, then set new email
+        // If email is entered & it is not as previous email
         if (email != null && !Objects.equals(customer.getEmail(), email)) {
-            // AND if email is not used by another customer, then set new address
+            // AND if email is not used by another customer, then set new email
             Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(email);
             if (foundEmail.isPresent()) {
                 throw new IllegalStateException(foundEmail + " is used by another user");
@@ -65,7 +64,7 @@ public class CustomerService {
             }
         }
 
-        // If address is entered & it is not as previous address, then set new address
+        // If address is entered & it is not as previous address, then set the new address
         if (address != null && !Objects.equals(customer.getAddress(), address)) {
             customer.setAddress(address);
         }
