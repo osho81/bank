@@ -9,7 +9,7 @@ import java.util.List;
 // (while service have more specific methods such as CRUD operations)
 
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
-@RequestMapping(path = "/start") // Either use this main routing for whole class or specify at endpoint methods
+@RequestMapping(path = "/api/v1") // Either use this main routing for whole class or specify at endpoint methods
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -25,7 +25,7 @@ public class CustomerController {
     // Major types of Rest endpoints;
     // https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/html/production-ready-endpoints.html
 
-    @GetMapping //("customers/list") // Either use these endpoint routings or main RequestMapping above
+    @GetMapping //("customers") // Either use these endpoint routings or main RequestMapping above
     public List<Customer> customers() {
         return customerService.getCustomers();
     }
