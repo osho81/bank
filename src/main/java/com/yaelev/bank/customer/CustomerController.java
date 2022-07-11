@@ -25,7 +25,7 @@ public class CustomerController {
     // Major types of Rest endpoints;
     // https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/html/production-ready-endpoints.html
 
-    @GetMapping // ("customers") // Align with @RequestMapping above
+    @GetMapping ("/customers") // Align with @RequestMapping above
     public List<Customer> customers() {
         return customerService.getCustomers();
     }
