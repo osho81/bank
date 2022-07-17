@@ -1,4 +1,4 @@
-package com.yaelev.bank.customer;
+package com.yaelev.bank.model;
 
 // Class for adding data to Customer table
 

@@ -1,6 +1,5 @@
-package com.yaelev.bank.customer;
+package com.yaelev.bank.model;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

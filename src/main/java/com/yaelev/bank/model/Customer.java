@@ -1,4 +1,4 @@
-package com.yaelev.bank.customer;
+package com.yaelev.bank.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
