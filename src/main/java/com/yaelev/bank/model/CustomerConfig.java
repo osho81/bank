@@ -2,6 +2,7 @@ package com.yaelev.bank.model;
 
 // Class for adding data to Customer table
 
+import com.yaelev.bank.service.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,5 +1,7 @@
-package com.yaelev.bank.customer;
+package com.yaelev.bank.controller;
 
+import com.yaelev.bank.model.Customer;
+import com.yaelev.bank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
