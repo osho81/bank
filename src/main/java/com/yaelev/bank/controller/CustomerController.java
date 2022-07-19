@@ -10,6 +10,8 @@ import java.util.List;
 // "Api layer"; controls endpoints, routing etc.
 // (while service have more specific methods such as CRUD operations)
 
+// Solving frontend cors policy for api requests
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
 @RequestMapping(path = "/api/v1") // Align with GET endpoint
 public class CustomerController {
