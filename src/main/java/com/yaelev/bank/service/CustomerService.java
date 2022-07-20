@@ -14,11 +14,11 @@ import java.util.Optional;
 // Services such as CRUD operations.
 
 @Service // Enables @Autowired in this class' references in other classes
-// @Component is similar to @Service but Service is more specific to this usage
+// @Component is similar to @Service but Service is more specific for this usage
 public class CustomerService {
 
-    // Implements related interface
-    // (spring enables skipping implement keyword: https://spring.io/guides/gs/accessing-data-jpa/
+    // Implements the interface CustomerRepository
+    // (spring enables skipping "implement" keyword: https://spring.io/guides/gs/accessing-data-jpa/ )
     private final CustomerRepository customerRepository;
 
     @Autowired // Autowire/inject the implemented interface
