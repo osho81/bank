@@ -7,7 +7,7 @@ import java.util.Optional;
 
 // "Data access layer"; enables CRUD operations; used by related service class
 
-// Specify class to service with CRUD methods etc., and specify Id type
+// Specify class to service with CRUD methods etc., and specify id type (Long)
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
 
