@@ -16,8 +16,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     // @Query("select c from Customer c where c.email = ?1")
     Optional<Customer> findCustomerByEmail(String email);
 
-    // In case need later:
-//    Optional<Customer> findCustomerByCustomerNo(long customerNo); // NOT id
 
 }
 
