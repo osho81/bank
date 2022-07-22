@@ -19,7 +19,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @Autowired
-    // "auto-instantiate" customerservice (we dont need the keyword new etc)
+    // "auto-instantiate" customerservice (skip the new-keyword)
     // also need to add @Component or @Service in CustomerService class
     // These "auto-instantiating" annotations is type of "dependency injection".
     public CustomerController(CustomerService customerService) {

@@ -19,7 +19,6 @@ public class CustomerConfig {
     CommandLineRunner commandLineRunner (CustomerRepository repository) {
         return args -> {
             Customer donald = new Customer( // Skip id, since it is auto-generated
-                    1001,
                     "Donald",
                     "Duck",
                     LocalDate.of(1990, Month.MAY, 5),
@@ -29,7 +28,6 @@ public class CustomerConfig {
             );
 
             Customer mickey = new Customer(
-                    2002,
                     "Mickey",
                     "Mouse",
                     LocalDate.of(1980, Month.JUNE, 6),
@@ -39,7 +37,6 @@ public class CustomerConfig {
             );
 
             Customer minnie = new Customer(
-                    2007,
                     "Minnie",
                     "Mouse",
                     LocalDate.of(1985, Month.JULY, 7),
