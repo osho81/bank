@@ -13,7 +13,7 @@ import java.util.List;
 // Solving frontend cors policy for api requests
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
-@RequestMapping(path = "/api/v1") // Align with GET endpoint
+@RequestMapping(path = "/api/v1")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -29,7 +29,7 @@ public class CustomerController {
     // Major types of Rest endpoints;
     // https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/html/production-ready-endpoints.html
 
-    @GetMapping("/customers") // Align with @RequestMapping above
+    @GetMapping("/customers") // http://localhost:3000/api/v1/customers
     public List<Customer> customers() {
         return customerService.getCustomers();
     }
@@ -39,7 +39,7 @@ public class CustomerController {
         customerService.registerNewCustomer(customer);
     }
 
-    @DeleteMapping(path = "{customerId}") // i.e.: URL/id
+    @DeleteMapping(path = "{customerId}") // http://localhost:3000/api/v1/customers/id
     public void deleteCustomer(@PathVariable("customerId") Long customerId) { // extracts id-part
         customerService.deleteCustomer(customerId); // Operate on the extracted id-part
     }
