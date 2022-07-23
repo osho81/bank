@@ -34,7 +34,7 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
-    @GetMapping("/customers/{customerId}") // http://localhost:3000/api/v1/customers/id-argument
+    @GetMapping(path = "/customer/{customerId}") // http://localhost:3000/api/v1/customers/id-argument
     public Customer getCustomerById(@PathVariable("customerId") Long customerId) {
         return customerService.getCustomerById(customerId);
     }
@@ -44,8 +44,8 @@ public class CustomerController {
         customerService.registerNewCustomer(customer);
     }
 
-    @DeleteMapping(path = "{customerId}") // http://localhost:3000/api/v1/customers/id
-    public void deleteCustomer(@PathVariable("customerId") Long customerId) { // extracts id-part
+    @DeleteMapping("{customerId}") // http://localhost:3000/api/v1/customers/id
+    public void deleteCustomer(@PathVariable Long customerId) { // extracts id-part
         customerService.deleteCustomer(customerId); // Operate on the extracted id-part
     }
 
