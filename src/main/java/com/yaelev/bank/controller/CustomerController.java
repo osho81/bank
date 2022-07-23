@@ -5,6 +5,7 @@ import com.yaelev.bank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 // "Api layer"; controls endpoints, routing etc. REST API.
@@ -51,9 +52,11 @@ public class CustomerController {
 
     @PutMapping(path = "{customerId}")
     public void updateCustomer( // Extract id, and optional email & address paras
-            @PathVariable("customerId") Long customerId,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) String address) {
+                                @PathVariable("customerId") Long customerId,
+                                @RequestParam(required = false) String fname,
+                                @RequestParam(required = false) String lname,
+                                @RequestParam(required = false) String email,
+                                @RequestParam(required = false) String address) {
         // id to find customer; email/address to change if customer exists
 
         customerService.updateCustomer(customerId, email, address);
