@@ -13,9 +13,10 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     // Customized operations and queries
 
-    // @Query("select c from Customer c where c.email = ?1")
     Optional<Customer> findCustomerByEmail(String email);
 
+    // Compare e.g.:
+    // @Query("select c from Customer c where c.email = ?1")
 
 }
 

@@ -37,7 +37,7 @@ public class CustomerController {
 
     @GetMapping("/customer/{customerId}") // http://localhost:3000/api/v1/customers/id-argument
     public ResponseEntity<Customer> getCustomerById(@PathVariable("customerId") Long customerId) {
-        return customerService.getCustomerById(customerId);
+        return customerService.getCustomerById(customerId); // Extract id from path
     }
 
     @PostMapping // @RequestBody is for input
@@ -51,15 +51,12 @@ public class CustomerController {
     }
 
     @PutMapping(path = "{customerId}")
-    public void updateCustomer( // Extract id, and optional email & address paras
-                                @PathVariable("customerId") Long customerId,
-                                @RequestParam(required = false) String fName,
-                                @RequestParam(required = false) String lName,
-                                @RequestParam(required = false) String email,
-                                @RequestParam(required = false) String address) {
-        // id to find customer; email/address to change if customer exists
-
-        customerService.updateCustomer(customerId, fName, lName, email, address);
+    public void updateCustomer(@PathVariable("customerId") Long customerId,
+                               @RequestBody Customer customer,
+                               @RequestParam(required = false) String email,
+                               @RequestParam(required = false) String address) {
+        // Call CustomerService update method
+        customerService.updateCustomer(customerId, customer, email, address);
 
     }
 

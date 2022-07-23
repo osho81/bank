@@ -4,8 +4,8 @@ import com.yaelev.bank.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -40,13 +40,42 @@ public class CustomerService {
     }
 
     public void registerNewCustomer(Customer customer) {
-        Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(customer.getEmail());
-        if (foundEmail.isPresent()) { // If returned container is not empty...
-            throw new IllegalStateException(foundEmail + " is used by another user");
+        Optional<Customer> foundByEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+        if (foundByEmail.isPresent()) { // If returned container is not empty...
+            throw new IllegalStateException(foundByEmail + " is used by another user");
         } else {
             System.out.println("new customer added; " + customer);
             customerRepository.save(customer);
         }
+    }
+
+    // @Transactional // JPA/hibernate management state
+    public void updateCustomer(Long customerId, @RequestBody Customer customer, String email, String address) {
+        Optional<Customer> foundCustomer = customerRepository.findById(customerId);
+        if (foundCustomer.isPresent()) { // If returned container is not empty...
+
+            if (customer.getEmail() != null && !Objects.equals(customer.getEmail(), email)) {
+                // AND if email is not used by another customer, then set new email
+                Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+                if (foundEmail.isPresent()) {
+                    throw new IllegalStateException(foundEmail + " is used by another user");
+                } else {
+                    customer.setEmail(customer.getEmail());
+                }
+            }
+
+            // If address is entered & it is not as previous address, then set the new address
+            if (customer.getAddress() != null && !Objects.equals(customer.getAddress(), address)) {
+                customer.setAddress(customer.getAddress());
+            }
+
+            customerRepository.save(customer);
+
+        } else { // if user doesn't exists...
+
+            throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
+        }
+
     }
 
     public void deleteCustomer(Long customerId) {
@@ -56,34 +85,6 @@ public class CustomerService {
         } else {
             throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
         }
-
-    }
-
-    @Transactional // JPA/hibernate management state
-    public void updateCustomer(Long customerId, String fName, String lName, String email, String address) {
-        Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
-                new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
-
-        // If email is entered & it is not as previous email
-        if (email != null && !Objects.equals(customer.getEmail(), email)) {
-            // AND if email is not used by another customer, then set new email
-            Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(email);
-            if (foundEmail.isPresent()) {
-                throw new IllegalStateException(foundEmail + " is used by another user");
-            } else {
-                customer.setEmail(email);
-            }
-        }
-
-        // If address is entered & it is not as previous address, then set the new address
-        if (address != null && !Objects.equals(customer.getAddress(), address)) {
-            customer.setAddress(address);
-        }
-
-        customer.setfName(address);
-        customer.setfName(address);
-
-        // customerRepository.save(customer); // Save the new set columns/variables
 
     }
 
