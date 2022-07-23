@@ -1,7 +1,6 @@
 package com.yaelev.bank.service;
 
 import com.yaelev.bank.model.Customer;
-import com.yaelev.bank.service.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,10 +33,10 @@ public class CustomerService {
     }
 
     // Get specific customer, find by customer id
-    public Customer getCustomerById(Long customerId) {
+    public ResponseEntity<Customer> getCustomerById(Long customerId) {
         Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
                 new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
-        return customer;
+        return ResponseEntity.ok(customer);
     }
 
     public void registerNewCustomer(Customer customer) {

@@ -1,3 +1,27 @@
+GET http://localhost:8080/api/v1/customer/2
+
+<> 2022-07-23T132655.200.json
+
+###
+
+GET http://localhost:8080/api/v1/customer/1
+
+<> 2022-07-23T132646.200.json
+
+###
+
+GET http://localhost:8080/api/v1/customer/4
+
+<> 2022-07-23T132535.404.json
+
+###
+
+GET http://localhost:8080/api/v1/customer/4
+
+<> 2022-07-23T132531.404.json
+
+###
+
 GET http://localhost:8080/api/v1/customer/4
 
 <> 2022-07-23T132453.404.json
@@ -353,61 +377,6 @@ Content-Type: application/json
   "address":"Fifth street 8",
   "email":"psttest3@gmail.com"
 }
-
-###
-
-POST http://localhost:8080/api/v1
-Content-Type: application/json
-
-{
-  "customerNo":3011,
-  "fName":"Teeest",
-  "lName":"Poooost",
-  "dateOfBirth":"1950-09-09",
-  "ssn":"500909-2918",
-  "address":"Fifth street 8",
-  "email":"psttest2@gmail.com"
-}
-
-<> 2022-07-20T004850.500.json
-
-###
-
-POST http://localhost:8080/api/v1
-Content-Type: application/json
-
-{
-  "customerNo":3011,
-  "fName":"Teeest",
-  "lName":"Poooost",
-  "dateOfBirth":"1950-09-09",
-  "ssn":"500909-2918",
-  "address":"Fifth street 8",
-  "email":"psttest2@gmail.com"
-}
-
-###
-
-POST http://localhost:8080/api/
-Content-Type: application/json
-
-{
-  "customerNo":3011,
-  "fName":"Teeest",
-  "lName":"Poooost",
-  "dateOfBirth":"1950-09-09",
-  "ssn":"500909-2918",
-  "address":"Fifth street 8",
-  "email":"psttest2@gmail.com"
-}
-
-<> 2022-07-20T004726.404.json
-
-###
-
-GET http://localhost:8080/api/v1/customers
-
-<> 2022-07-20T004701.200.json
 
 ###
 
