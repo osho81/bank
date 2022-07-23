@@ -45,11 +45,6 @@ public class CustomerController {
         customerService.registerNewCustomer(customer);
     }
 
-    @DeleteMapping("{customerId}") // http://localhost:3000/api/v1/customers/id
-    public void deleteCustomer(@PathVariable Long customerId) { // extracts id-part
-        customerService.deleteCustomer(customerId); // Operate on the extracted id-part
-    }
-
     @PutMapping(path = "{customerId}")
     public void updateCustomer(@PathVariable("customerId") Long customerId,
                                @RequestBody Customer customer,
@@ -58,6 +53,11 @@ public class CustomerController {
         // Call CustomerService update method
         customerService.updateCustomer(customerId, customer, email, address);
 
+    }
+
+    @DeleteMapping("{customerId}") // http://localhost:3000/api/v1/customers/id
+    public void deleteCustomer(@PathVariable Long customerId) { // extracts id-part
+        customerService.deleteCustomer(customerId); // Operate on the extracted id-part
     }
 
 }

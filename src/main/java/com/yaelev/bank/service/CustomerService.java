@@ -50,31 +50,31 @@ public class CustomerService {
     }
 
     // @Transactional // JPA/hibernate management state
-    public void updateCustomer(Long customerId, @RequestBody Customer customer, String email, String address) {
+    public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer, String email, String address) {
         Optional<Customer> foundCustomer = customerRepository.findById(customerId);
         if (foundCustomer.isPresent()) { // If returned container is not empty...
 
-            if (customer.getEmail() != null && !Objects.equals(customer.getEmail(), email)) {
+            if (email != null && !Objects.equals(customer.getEmail(), email)) {
                 // AND if email is not used by another customer, then set new email
-                Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+                Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(email);
                 if (foundEmail.isPresent()) {
                     throw new IllegalStateException(foundEmail + " is used by another user");
                 } else {
-                    customer.setEmail(customer.getEmail());
+                    customer.setEmail(email);
                 }
             }
 
             // If address is entered & it is not as previous address, then set the new address
-            if (customer.getAddress() != null && !Objects.equals(customer.getAddress(), address)) {
+            if (address != null && !Objects.equals(customer.getAddress(), address)) {
                 customer.setAddress(customer.getAddress());
             }
 
-            customerRepository.save(customer);
-
         } else { // if user doesn't exists...
-
             throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
         }
+
+        Customer updatedCustomer = customerRepository.save(customer);
+        return ResponseEntity.ok(updatedCustomer);
 
     }
 
