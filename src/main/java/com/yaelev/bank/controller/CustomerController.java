@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// "Api layer"; controls endpoints, routing etc.
+// "Api layer"; controls endpoints, routing etc. REST API.
 // (while service have more specific methods such as CRUD operations)
 
 // Solving frontend cors policy for api requests
@@ -32,6 +32,11 @@ public class CustomerController {
     @GetMapping("/customers") // http://localhost:3000/api/v1/customers
     public List<Customer> customers() {
         return customerService.getCustomers();
+    }
+
+    @GetMapping("/customers/{customerId}") // http://localhost:3000/api/v1/customers/id-argument
+    public void getCustomerById(@PathVariable("customerId") Long customerId) {
+        customerService.getCustomerById(customerId);
     }
 
     @PostMapping // @RequestBody is for input

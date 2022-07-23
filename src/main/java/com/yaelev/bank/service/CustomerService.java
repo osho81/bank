@@ -3,6 +3,7 @@ package com.yaelev.bank.service;
 import com.yaelev.bank.model.Customer;
 import com.yaelev.bank.service.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -10,11 +11,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-// "Service layer"; between Api and data access;
-// Services such as CRUD operations.
+// (Optional) "Service layer"; between Api and data access;
+// Services such as assisting CRUD operations.
+// Suitable for filtering results etc.
 
 @Service // Enables @Autowired in this class' references in other classes
-// @Component is similar to @Service but Service is more specific for this usage
+// @Component is similar to @Service but Service is more specific for this purpose
 public class CustomerService {
 
     // Implements the interface CustomerRepository
@@ -26,8 +28,16 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
+    // Get all customers
     public List<Customer> getCustomers() {
         return (List<Customer>) customerRepository.findAll();
+    }
+
+    // Get specific customer, find by customer id
+    public ResponseEntity<Customer> getCustomerById(Long customerId) {
+        Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
+                new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
+        return ResponseEntity.ok(customer);
     }
 
     public void registerNewCustomer(Customer customer) {
@@ -74,6 +84,5 @@ public class CustomerService {
         // customerRepository.save(customer); // Save the new set columns/variables
 
     }
-
 
 }
