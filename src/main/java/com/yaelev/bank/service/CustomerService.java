@@ -50,7 +50,8 @@ public class CustomerService {
     }
 
     // @Transactional // JPA/hibernate management state
-    public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer, String email, String address) {
+    public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer,
+                                                   String fName, String lName, String email, String address) {
         Optional<Customer> foundCustomer = customerRepository.findById(customerId);
         if (foundCustomer.isPresent()) { // If returned container is not empty...
 
@@ -64,15 +65,22 @@ public class CustomerService {
                 }
             }
 
-            // If address is entered & it is not as previous address, then set the new address
+            // If other inputs are entered & are not as previous ones, then set the new values
             if (address != null && !Objects.equals(customer.getAddress(), address)) {
-                customer.setAddress(customer.getAddress());
+                customer.setAddress(address);
+            }
+            if (fName != null && !Objects.equals(customer.getfName(), fName)) {
+                customer.setfName(fName);
+            }
+            if (lName != null && !Objects.equals(customer.getlName(), lName)) {
+                customer.setlName(lName);
             }
 
         } else { // if user doesn't exists...
             throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
         }
 
+        // Save (and return) all eventual new set values
         Customer updatedCustomer = customerRepository.save(customer);
         return ResponseEntity.ok(updatedCustomer);
 

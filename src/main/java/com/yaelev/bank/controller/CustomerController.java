@@ -45,13 +45,15 @@ public class CustomerController {
         customerService.registerNewCustomer(customer);
     }
 
-    @PutMapping(path = "{customerId}")
+    @PutMapping(path = "{customerId}") // Extract paras from request path
     public void updateCustomer(@PathVariable("customerId") Long customerId,
                                @RequestBody Customer customer,
+                               @RequestParam(required = false) String fName,
+                               @RequestParam(required = false) String lName,
                                @RequestParam(required = false) String email,
                                @RequestParam(required = false) String address) {
         // Call CustomerService update method
-        customerService.updateCustomer(customerId, customer, email, address);
+        customerService.updateCustomer(customerId, customer, fName, lName, email, address);
 
     }
 
