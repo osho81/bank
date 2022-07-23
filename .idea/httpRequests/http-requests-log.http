@@ -1,3 +1,67 @@
+PUT http://localhost:8080/api/v1/3?email=upd2@gmail.com&address=uppdateradadress22&fName=uppdaterad22&lName=updat22
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=upd1@gmail.com&address=uppdateradadress&fName=uppdaterad1&lName=updat10
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=wpoyerhy@gmail.com&address=dfjerhm&fName=qeeerhrs&lName=wt4eteh
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=wpoyy@gmail.com&address=dfjm&fName=qeers&lName=wt4et
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=wpoie5rgtyyy@gmail.com&address=dfjmky&fName=qeyers&lName=wtq4etg
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=werweq5ye5rgtyyy@gmail.com&f_name=qeyerye4s&lName=wtq4et4wetg
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=werergergtyyy@gmail.com&f_name=bajsssss&lName=pissss
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=werergergtyyy@gmail.com&f_name=bajsssss&lName=pissss
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=werergergtyyy@gmail.com&fName=bajsssss&lName=pissss
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=werergergtyyy@gmail.com&lName=bajsssss
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=wertyyy@gmail.com&lName=bajs
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=werty@gmail.com&fName=bajs
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=updattkdt@gmail.com&address=dfjmxrtkystreeeet nr45&lName=emmmma
+
+###
+
+PUT http://localhost:8080/api/v1/3?email=updattkdt@gmail.com&address=dfjmxrtkystreeeet nr45&fName=emma
+
+###
+
+PUT http://localhost:8080/api/v1/2?email=updateerfd@gmail.com&address=New streeeet nr45&fName=emma
+
+###
+
+PUT http://localhost:8080/api/v1/2?email=updateed@gmail.com&address=New streeeet nr45
+
+###
+
 PUT http://localhost:8080/api/v1/2?email=update2d@gmail.com&address=New street nr45
 
 ###
@@ -405,196 +469,6 @@ Content-Type: application/json
 }
 
 <> 2022-07-23T233706.405.json
-
-###
-
-POST http://localhost:8080/api/v1/5
-Content-Type: application/json
-
-{
-"fName":"UpdateTest3",
-"lName":"former mouse",
-"dateOfBirth":"1980-08-03",
-"ssn":"800606-4175",
-"address":"First street 8",
-"email":"updateTest3@gmail.com"
-}
-
-<> 2022-07-23T233617.405.json
-
-###
-
-PUT http://localhost:8080/api/v1/5
-Content-Type: application/json
-
-{
-  "fName":"UpdateTest3",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest3@gmail.com"
-}
-
-###
-
-PUT http://localhost:8080/api/v1/5
-Content-Type: application/json
-
-{
-  "fName":"UpdateTest2",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest2@gmail.com"
-}
-
-###
-
-PUT http://localhost:8080/api/v1/5
-Content-Type: application/json
-
-{
-  "fName":"UpdateTest2",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest2@gmail.com"
-}
-
-###
-
-DELETE http://localhost:8080/api/v1/6
-
-###
-
-PUT http://localhost:8080/api/v1/5
-Content-Type: application/json
-
-{
-  "fName":"UpdateTest2",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest2@gmail.com"
-}
-
-###
-
-PUT http://localhost:8080/api/v1/5
-
-{
-  "fName":"UpdateTest2",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest2@gmail.com"
-}
-
-###
-
-PUT http://localhost:8080/api/v1/5
-
-{
-  "fName":"UpdateTest2",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest2@gmail.com"
-}
-
-###
-
-PUT http://localhost:8080/api/v1/2
-Content-Type: application/json
-
-{
-  "fName":"UpdateTest2",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest2@gmail.com"
-}
-
-###
-
-PUT http://localhost:8080/api/v1/2
-Content-Type: application/json
-
-{
-  "fName":"UpdateTest2",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest2@gmail.com"
-}
-
-###
-
-POST http://localhost:8080/api/v1
-Content-Type: application/json
-
-{
-  "fName":"Teeest2",
-  "lName":null,
-  "dateOfBirth":null,
-  "ssn":null,
-  "address":"Fifth street 8",
-  "email":"psttest843q35@gmail.com"
-}
-
-###
-
-PUT http://localhost:8080/api/v1/2
-Content-Type: application/json
-
-{
-  "fName":"UpdateTest2",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest2@gmail.com"
-}
-
-###
-
-PUT http://localhost:8080/api/v1/2
-Content-Type: application/json
-
-{
-  "fName":"Teeqqe2",
-  "lName":"former mouse",
-  "dateOfBirth":"1980-08-03",
-  "ssn":"800606-4175",
-  "address":"First street 8",
-  "email":"updateTest1@gmail.com"
-}
-
-###
-
-GET http://localhost:8080/api/v1/customer/5
-
-<> 2022-07-23T134303.200.json
-
-###
-
-GET http://localhost:8080/api/v1/customer/4
-
-<> 2022-07-23T134256.500.json
-
-###
-
-GET http://localhost:8080/api/v1/customer/4
-
-<> 2022-07-23T133133.500.json
 
 ###
 

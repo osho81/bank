@@ -72,9 +72,13 @@ public class CustomerService {
             if (fName != null && !Objects.equals(customer.getfName(), fName)) {
                 customer.setfName(fName);
             }
-            if (lName != null && !Objects.equals(customer.getlName(), lName)) {
-                customer.setlName(lName);
-            }
+//            if (lName != null && !Objects.equals(customer.getlName(), lName)) {
+//                customer.setlName(lName);
+//            }
+
+            // The rest as is
+//            customer.setSsn(customer.getSsn());
+//            customer.setDateOfBirth(customer.getDateOfBirth());
 
         } else { // if user doesn't exists...
             throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
