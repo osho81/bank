@@ -35,8 +35,8 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/{customerId}") // http://localhost:3000/api/v1/customers/id-argument
-    public void getCustomerById(@PathVariable("customerId") Long customerId) {
-        customerService.getCustomerById(customerId);
+    public Customer getCustomerById(@PathVariable("customerId") Long customerId) {
+        return customerService.getCustomerById(customerId);
     }
 
     @PostMapping // @RequestBody is for input

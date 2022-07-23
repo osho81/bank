@@ -34,10 +34,10 @@ public class CustomerService {
     }
 
     // Get specific customer, find by customer id
-    public ResponseEntity<Customer> getCustomerById(Long customerId) {
+    public Customer getCustomerById(Long customerId) {
         Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
                 new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
-        return ResponseEntity.ok(customer);
+        return customer;
     }
 
     public void registerNewCustomer(Customer customer) {
