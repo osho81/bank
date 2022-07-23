@@ -60,7 +60,7 @@ public class CustomerService {
     }
 
     @Transactional // JPA/hibernate management state
-    public void updateCustomer(Long customerId, String email, String address) {
+    public void updateCustomer(Long customerId, String fName, String lName, String email, String address) {
         Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
                 new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
 
@@ -79,6 +79,9 @@ public class CustomerService {
         if (address != null && !Objects.equals(customer.getAddress(), address)) {
             customer.setAddress(address);
         }
+
+        customer.setfName(address);
+        customer.setfName(address);
 
         // customerRepository.save(customer); // Save the new set columns/variables
 

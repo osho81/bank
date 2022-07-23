@@ -53,13 +53,13 @@ public class CustomerController {
     @PutMapping(path = "{customerId}")
     public void updateCustomer( // Extract id, and optional email & address paras
                                 @PathVariable("customerId") Long customerId,
-                                @RequestParam(required = false) String fname,
-                                @RequestParam(required = false) String lname,
+                                @RequestParam(required = false) String fName,
+                                @RequestParam(required = false) String lName,
                                 @RequestParam(required = false) String email,
                                 @RequestParam(required = false) String address) {
         // id to find customer; email/address to change if customer exists
 
-        customerService.updateCustomer(customerId, email, address);
+        customerService.updateCustomer(customerId, fName, lName, email, address);
 
     }
 

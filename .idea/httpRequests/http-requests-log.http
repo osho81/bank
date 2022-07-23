@@ -1,3 +1,31 @@
+PUT http://localhost:8080/api/v1/2
+Content-Type: application/json
+
+{
+  "fName":"UpdateTest2",
+  "lName":"former mouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 8",
+  "email":"updateTest2@gmail.com"
+}
+
+###
+
+PUT http://localhost:8080/api/v1/2
+Content-Type: application/json
+
+{
+  "fName":"Teeqqe2",
+  "lName":"former mouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 8",
+  "email":"updateTest1@gmail.com"
+}
+
+###
+
 GET http://localhost:8080/api/v1/customer/5
 
 <> 2022-07-23T134303.200.json
@@ -299,39 +327,6 @@ Content-Type: application/json
   "address":"Fifth street 8",
   "email":"psttest8435@gmail.com"
 }
-
-###
-
-POST http://localhost:8080/api/v1
-Content-Type: application/json
-
-{
-  "fName":"Teeest2",
-  "lName":"Poooost2",
-  "dateOfBirth":"1950-09-18",
-  "ssn":"500918-2918",
-  "address":"Fifth street 8",
-  "email":"psttest8@gmail.com"
-}
-
-<> 2022-07-22T232537.500.json
-
-###
-
-POST http://localhost:8080/api/v1
-Content-Type: application/json
-
-{
-  "customerNo":3011,
-  "fName":"Teeest2",
-  "lName":"Poooost2",
-  "dateOfBirth":"1950-09-18",
-  "ssn":"500918-2918",
-  "address":"Fifth street 8",
-  "email":"psttest8@gmail.com"
-}
-
-<> 2022-07-22T232525.500.json
 
 ###
 
