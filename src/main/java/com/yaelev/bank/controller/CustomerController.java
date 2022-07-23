@@ -35,7 +35,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customer/{customerId}") // http://localhost:3000/api/v1/customers/id-argument
-    public ResponseEntity<Customer> getCustomerById(@PathVariable Long customerId) {
+    public ResponseEntity<Customer> getCustomerById(@PathVariable("customerId") Long customerId) {
         return customerService.getCustomerById(customerId);
     }
 

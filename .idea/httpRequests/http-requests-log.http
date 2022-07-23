@@ -1,3 +1,15 @@
+GET http://localhost:8080/api/v1/customer/5
+
+<> 2022-07-23T134303.200.json
+
+###
+
+GET http://localhost:8080/api/v1/customer/4
+
+<> 2022-07-23T134256.500.json
+
+###
+
 GET http://localhost:8080/api/v1/customer/4
 
 <> 2022-07-23T133133.500.json
@@ -320,25 +332,6 @@ Content-Type: application/json
 }
 
 <> 2022-07-22T232525.500.json
-
-###
-
-DELETE http://localhost:8080/api/v1/12
-
-###
-
-POST http://localhost:8080/api/v1
-Content-Type: application/json
-
-{
-  "customerNo":3011,
-  "fName":"Teeest2",
-  "lName":"Poooost2",
-  "dateOfBirth":"1950-09-18",
-  "ssn":"500918-2918",
-  "address":"Fifth street 8",
-  "email":"psttest8@gmail.com"
-}
 
 ###
 
