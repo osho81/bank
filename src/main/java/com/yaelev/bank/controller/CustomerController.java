@@ -3,8 +3,8 @@ package com.yaelev.bank.controller;
 import com.yaelev.bank.model.Customer;
 import com.yaelev.bank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 // "Api layer"; controls endpoints, routing etc. REST API.
@@ -34,8 +34,8 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
-    @GetMapping(path = "/customer/{customerId}") // http://localhost:3000/api/v1/customers/id-argument
-    public Customer getCustomerById(@PathVariable("customerId") Long customerId) {
+    @GetMapping("/customer/{customerId}") // http://localhost:3000/api/v1/customers/id-argument
+    public Customer getCustomerById(@PathVariable Long customerId) {
         return customerService.getCustomerById(customerId);
     }
 
