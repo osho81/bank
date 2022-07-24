@@ -4,7 +4,6 @@ import com.yaelev.bank.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Objects;
@@ -50,10 +49,11 @@ public class CustomerService {
     }
 
     // @Transactional // JPA/hibernate management state
-    public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer,
-                                                   String fName, String lName, String email, String address) {
+    public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer, String fName, String lName, String email, String address) {
         Optional<Customer> foundCustomer = customerRepository.findById(customerId);
         if (foundCustomer.isPresent()) { // If returned container is not empty...
+
+            Customer updatedCustomer = customer;
 
             if (email != null && !Objects.equals(customer.getEmail(), email)) {
                 // AND if email is not used by another customer, then set new email
@@ -72,9 +72,12 @@ public class CustomerService {
             if (fName != null && !Objects.equals(customer.getfName(), fName)) {
                 customer.setfName(fName);
             }
-//            if (lName != null && !Objects.equals(customer.getlName(), lName)) {
-//                customer.setlName(lName);
-//            }
+            if (lName != null && !Objects.equals(customer.getlName(), lName)) {
+                customer.setlName(lName);
+            }
+
+            updatedCustomer = customerRepository.save(customer);
+            return ResponseEntity.ok(updatedCustomer);
 
             // The rest as is
 //            customer.setSsn(customer.getSsn());
@@ -85,8 +88,8 @@ public class CustomerService {
         }
 
         // Save (and return) all eventual new set values
-        Customer updatedCustomer = customerRepository.save(customer);
-        return ResponseEntity.ok(updatedCustomer);
+        //customerRepository.save(customer);
+
 
     }
 
