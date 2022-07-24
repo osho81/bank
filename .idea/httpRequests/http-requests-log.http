@@ -1,3 +1,343 @@
+PUT http://localhost:8080/api/v1/update
+
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T134504.400.json
+
+###
+
+PUT http://localhost:8080/api/v1/update
+
+<> 2022-07-24T134438.400.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/4
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T131454.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/4
+Content-Type: application/json
+
+{
+  "customerId":"1",
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T131447.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/2
+Content-Type: application/json
+
+{
+  "customerId":"1",
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T131345.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/2
+Content-Type: application/json
+
+{
+  "customerId":"1",
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T131146.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/2
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T131122.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/2
+
+<> 2022-07-24T131106.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/2?email=new@gmail.com&address=New street nr&fname=testing&lname=tessstttt
+
+<> 2022-07-24T131059.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/2?email=new@gmail.com&address=New street nr&fname=testing&lname=tessstttt
+
+<> 2022-07-24T125830.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/2?email=new@gmail.com&address=New street nr&fname=testing&lname=tessstttt
+
+<> 2022-07-24T125809.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/2?email=new@gmail.com&address=New street nr&fname=testing&lname=tessstttt
+
+<> 2022-07-24T125624.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/3
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T124300.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/5
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T123317.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/3
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T123255.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/3
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T123126.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update/3
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T122945.404.json
+
+###
+
+PUT http://localhost:8080/api/v1/update
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt777",
+  "lName":"frtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test777@gmail.com"
+}
+
+<> 2022-07-24T121507.400.json
+
+###
+
+PUT http://localhost:8080/api/v1/2
+
+<> 2022-07-24T120000.400.json
+
+###
+
+PUT http://localhost:8080/api/v1/2
+
+<> 2022-07-24T115939.400.json
+
+###
+
+PUT http://localhost:8080/api/v1/2
+
+<> 2022-07-24T115847.400.json
+
+###
+
+PUT http://localhost:8080/api/v1/4
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt77",
+  "lName":"frtjwrtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test77@gmail.com"
+}
+
+###
+
+PUT http://localhost:8080/api/v1/4
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt77",
+  "lName":"frtjwrtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test77@gmail.com"
+}
+
+###
+
+PUT http://localhost:8080/api/v1/2
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt6",
+  "lName":"frtjwrtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test7@gmail.com"
+}
+
+###
+
+PUT http://localhost:8080/api/v1/2
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt6",
+  "lName":"frtjwrtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test7@gmail.com"
+}
+
+###
+
+PUT http://localhost:8080/api/v1/2
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt6",
+  "lName":"frtjwrtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test7@gmail.com"
+}
+
+###
+
+PUT http://localhost:8080/api/v1/2
+Content-Type: application/json
+
+{
+  "fName":"tdjsrt6",
+  "lName":"frtjwrtjmouse",
+  "dateOfBirth":"1980-08-03",
+  "ssn":"800606-4175",
+  "address":"First street 43",
+  "email":"Test7@gmail.com"
+}
+
+###
+
+PUT http://localhost:8080/api/v1/2?email=upppdate@gmail.com
+
+<> 2022-07-24T113744.400.json
+
+###
+
 PUT http://localhost:8080/api/v1/2?email=upd1aer151@gmail.com&addre5ss=addresserea5rh111&fName=upp111ear5h&lName=we5rgqahhhhht
 Content-Type: application/json
 
@@ -139,134 +479,6 @@ PUT http://localhost:8080/api/v1/2?email=upd111@gmail.com&address=address111&fir
 PUT http://localhost:8080/api/v1/3?email=upd11@gmail.com&address=address11&firstName=upp11
 
 <> 2022-07-24T020337.400.json
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=upd11@gmail.com&address=address11&firstName=upp11
-
-<> 2022-07-24T020243.400.json
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=upd11@gmail.com&address=address11&fName=upp11
-
-<> 2022-07-24T020233.400.json
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=upd11@gmail.com&address=address11&lName=upp11
-
-<> 2022-07-24T020215.400.json
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=upd11@gmail.com&address=address11&lName=upp11
-
-<> 2022-07-24T020051.400.json
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=upd11@gmail.com&address=address11&fName=upp11
-
-<> 2022-07-24T015942.400.json
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=upd11@gmail.com&address=address11&fName=upp11
-
-<> 2022-07-24T015910.400.json
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=upd11@gmail.com&address=address11&fName=upp11&lName=dat11
-
-<> 2022-07-24T015830.400.json
-
-###
-
-PUT http://localhost:8080/api/v1/4?email=upd11@gmail.com&address=address11&fName=upp11&lName=dat11
-
-<> 2022-07-24T015820.400.json
-
-###
-
-PUT http://localhost:8080/api/v1/4?email=upd33@gmail.com&address=adadress33&fName=upp33&lName=dat33
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=upd2@gmail.com&address=uppdateradadress22&fName=uppdaterad22&lName=updat22
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=upd1@gmail.com&address=uppdateradadress&fName=uppdaterad1&lName=updat10
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=wpoyerhy@gmail.com&address=dfjerhm&fName=qeeerhrs&lName=wt4eteh
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=wpoyy@gmail.com&address=dfjm&fName=qeers&lName=wt4et
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=wpoie5rgtyyy@gmail.com&address=dfjmky&fName=qeyers&lName=wtq4etg
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=werweq5ye5rgtyyy@gmail.com&f_name=qeyerye4s&lName=wtq4et4wetg
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=werergergtyyy@gmail.com&f_name=bajsssss&lName=pissss
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=werergergtyyy@gmail.com&f_name=bajsssss&lName=pissss
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=werergergtyyy@gmail.com&fName=bajsssss&lName=pissss
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=werergergtyyy@gmail.com&lName=bajsssss
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=wertyyy@gmail.com&lName=bajs
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=werty@gmail.com&fName=bajs
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=updattkdt@gmail.com&address=dfjmxrtkystreeeet nr45&lName=emmmma
-
-###
-
-PUT http://localhost:8080/api/v1/3?email=updattkdt@gmail.com&address=dfjmxrtkystreeeet nr45&fName=emma
-
-###
-
-PUT http://localhost:8080/api/v1/2?email=updateerfd@gmail.com&address=New streeeet nr45&fName=emma
-
-###
-
-PUT http://localhost:8080/api/v1/2?email=updateed@gmail.com&address=New streeeet nr45
-
-###
-
-PUT http://localhost:8080/api/v1/2?email=update2d@gmail.com&address=New street nr45
-
-###
-
-PUT http://localhost:8080/api/v1/2?email=update2d@gmail.com&address=New street nr45
-
-###
-
-PUT http://localhost:8080/api/v1/2?email=update2d@gmail.com&address=New street nr45
 
 ###
 

@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 // (Optional) "Service layer"; between Api and data access;
@@ -32,9 +32,9 @@ public class CustomerService {
     }
 
     // Get specific customer, find by customer id
-    public ResponseEntity<Customer> getCustomerById(Long customerId) {
-        Customer customer = customerRepository.findById(customerId).orElseThrow(() ->
-                new IllegalStateException("Customer with id " + customerId + " doesn't exist"));
+    public ResponseEntity<Customer> getCustomerById(long id) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() ->
+                new IllegalStateException("Customer with id " + id + " doesn't exist"));
         return ResponseEntity.ok(customer);
     }
 
@@ -48,59 +48,34 @@ public class CustomerService {
         }
     }
 
-    // @Transactional // JPA/hibernate management state
-    public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer, String fName, String lName, String email, String address) {
-        Optional<Customer> foundCustomer = customerRepository.findById(customerId);
-        if (foundCustomer.isPresent()) { // If returned container is not empty...
-
-            Customer updatedCustomer = customer;
-
-            if (email != null && !Objects.equals(customer.getEmail(), email)) {
-                // AND if email is not used by another customer, then set new email
-                Optional<Customer> foundEmail = customerRepository.findCustomerByEmail(email);
-                if (foundEmail.isPresent()) {
-                    throw new IllegalStateException(foundEmail + " is used by another user");
-                } else {
-                    customer.setEmail(email);
-                }
-            }
-
-            // If other inputs are entered & are not as previous ones, then set the new values
-            if (address != null && !Objects.equals(customer.getAddress(), address)) {
-                customer.setAddress(address);
-            }
-            if (fName != null && !Objects.equals(customer.getfName(), fName)) {
-                customer.setfName(fName);
-            }
-            if (lName != null && !Objects.equals(customer.getlName(), lName)) {
-                customer.setlName(lName);
-            }
-
-            updatedCustomer = customerRepository.save(customer);
-            return ResponseEntity.ok(updatedCustomer);
-
-            // The rest as is
-//            customer.setSsn(customer.getSsn());
-//            customer.setDateOfBirth(customer.getDateOfBirth());
-
-        } else { // if user doesn't exists...
-            throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
-        }
-
-        // Save (and return) all eventual new set values
-        //customerRepository.save(customer);
 
 
-    }
-
-    public void deleteCustomer(Long customerId) {
-        Optional<Customer> customerExists = customerRepository.findById(customerId);
+    public void deleteCustomer(long id) {
+        Optional<Customer> customerExists = customerRepository.findById(id);
         if (customerExists.isPresent()) { // If returned container is not empty...
-            customerRepository.deleteById(customerId);
+            customerRepository.deleteById(id);
         } else {
-            throw new IllegalStateException("Customer with id " + customerId + " doesn't exist");
+            throw new IllegalStateException("Customer with id " + id + " doesn't exist");
         }
 
     }
 
+    @Transactional
+    public Customer updateCustomer(long id, Customer customer) {
+
+        // Check whether customer with given id exists in DB or not
+        Customer existingCustomer = customerRepository.findById(id).get();
+        //OR .orElseThrow( () -> new IllegalStateException("No customer with id " + id));
+
+        existingCustomer.setfName(customer.getfName());
+        existingCustomer.setlName(customer.getlName());
+        existingCustomer.setEmail(customer.getEmail());
+        existingCustomer.setSsn(customer.getSsn());
+        existingCustomer.setAddress(customer.getAddress());
+        existingCustomer.setDateOfBirth(customer.getDateOfBirth());
+
+        // save existing customer to database
+        customerRepository.save(existingCustomer);
+        return existingCustomer;
+    }
 }
