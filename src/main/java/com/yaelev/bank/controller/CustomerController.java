@@ -15,7 +15,7 @@ import java.util.Optional;
 // (while service have more specific methods such as CRUD operations)
 
 // Solving frontend cors policy for api requests
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000") // points to react (spring port: 8080)
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
 @RequestMapping(path = "/api/v1")
 public class CustomerController {
@@ -32,9 +32,6 @@ public class CustomerController {
         this.customerService = customerService;
         this.customerRepository = customerRepository;
     }
-
-    // Major types of Rest endpoints;
-    // https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/html/production-ready-endpoints.html
 
     @GetMapping("/customers") // http://localhost:3000/api/v1/customers
     public List<Customer> customers() {
@@ -57,7 +54,6 @@ public class CustomerController {
         System.out.println(id);
         customerService.updateCustomer(id, customer);
     }
-
 
     @DeleteMapping("{id}") // http://localhost:3000/api/v1/customers/id
     public void deleteCustomer(@PathVariable long id) { // extracts id-part

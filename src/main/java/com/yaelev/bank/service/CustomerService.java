@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,15 +68,47 @@ public class CustomerService {
         Customer existingCustomer = customerRepository.findById(id).get();
         //OR .orElseThrow( () -> new IllegalStateException("No customer with id " + id));
 
-        existingCustomer.setfName(customer.getfName());
-        existingCustomer.setlName(customer.getlName());
-        existingCustomer.setEmail(customer.getEmail());
-        existingCustomer.setSsn(customer.getSsn());
-        existingCustomer.setAddress(customer.getAddress());
-        existingCustomer.setDateOfBirth(customer.getDateOfBirth());
+        // Check if the email is already used by any user
+        Optional<Customer> foundByEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+        if (foundByEmail.isPresent()) {
+            throw new IllegalStateException(foundByEmail + " is used by another user");
+        } else if (customer.getEmail().isEmpty()) {
+            throw new IllegalStateException("Email field is empty");
+        } else {
+            existingCustomer.setEmail(customer.getEmail());
+        }
+
+        // Check if the other fields/columns are not empty or null (regardless if are nullable in db)
+        if (!customer.getfName().isEmpty() && customer.getfName() != null) {
+            existingCustomer.setfName(customer.getfName());
+        } else {
+            throw new IllegalStateException("First name field is empty");
+        }
+        if (!customer.getlName().isEmpty() && customer.getlName() != null) {
+            existingCustomer.setlName(customer.getlName());
+        } else {
+            throw new IllegalStateException("Last name field is empty");
+        }
+        if (!customer.getSsn().isEmpty() && customer.getSsn() != null) {
+            existingCustomer.setSsn(customer.getSsn());
+        } else {
+            throw new IllegalStateException("SSN field is empty");
+        }
+        if (!customer.getAddress().isEmpty() && customer.getAddress() != null) {
+            existingCustomer.setAddress(customer.getAddress());
+        } else {
+            throw new IllegalStateException("Address field is empty");
+        }
+        // Frontend side will provide more sufficient input limit of date format
+        if (customer.getDateOfBirth() != null) {
+            existingCustomer.setDateOfBirth(customer.getDateOfBirth());
+        } else {
+            throw new IllegalStateException("Date of birth field is empty");
+        }
 
         // save existing customer to database
         customerRepository.save(existingCustomer);
         return existingCustomer;
+
     }
 }
