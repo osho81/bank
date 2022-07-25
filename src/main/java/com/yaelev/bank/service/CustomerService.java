@@ -6,13 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
 // (Optional) "Service layer"; between Api and data access;
 // Services such as assisting CRUD operations.
-// Suitable for filtering results etc.
+// Suitable for filtering or validating request results etc.
 
 @Service // Enables @Autowired in this class' references in other classes
 // @Component is similar to @Service but Service is more specific for this purpose
@@ -48,8 +47,6 @@ public class CustomerService {
             customerRepository.save(customer);
         }
     }
-
-
 
     public void deleteCustomer(long id) {
         Optional<Customer> customerExists = customerRepository.findById(id);
