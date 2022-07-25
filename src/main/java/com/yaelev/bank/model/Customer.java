@@ -135,7 +135,6 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                // ", customerNo=" + customerNo +
                 ", fName='" + fName + '\'' +
                 ", lName='" + lName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
