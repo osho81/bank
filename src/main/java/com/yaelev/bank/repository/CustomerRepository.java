@@ -1,4 +1,4 @@
-package com.yaelev.bank.service;
+package com.yaelev.bank.repository;
 
 import com.yaelev.bank.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

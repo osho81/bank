@@ -1,6 +1,7 @@
 package com.yaelev.bank.service;
 
 import com.yaelev.bank.model.Customer;
+import com.yaelev.bank.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

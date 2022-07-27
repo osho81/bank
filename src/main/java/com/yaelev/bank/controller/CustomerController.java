@@ -1,15 +1,13 @@
 package com.yaelev.bank.controller;
 
 import com.yaelev.bank.model.Customer;
-import com.yaelev.bank.service.CustomerRepository;
+import com.yaelev.bank.repository.CustomerRepository;
 import com.yaelev.bank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 // "Api layer"; controls endpoints, routing etc. REST API.
 // (while service have more specific methods such as CRUD operations)

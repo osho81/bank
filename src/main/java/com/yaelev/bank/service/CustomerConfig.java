@@ -1,9 +1,9 @@
-package com.yaelev.bank.config;
+package com.yaelev.bank.service;
 
 // Class for adding data to Customer table
 
 import com.yaelev.bank.model.Customer;
-import com.yaelev.bank.service.CustomerRepository;
+import com.yaelev.bank.repository.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
