@@ -17,7 +17,7 @@ import java.util.Optional;
 // Solving frontend cors policy for api requests
 @CrossOrigin(origins = "http://localhost:3000") // points to react (spring port: 8080)
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
-@RequestMapping(path = "/api/v1")
+@RequestMapping(path = "/api/v1/customer")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -33,12 +33,12 @@ public class CustomerController {
         this.customerRepository = customerRepository;
     }
 
-    @GetMapping("/customers") // http://localhost:3000/api/v1/customers
+    @GetMapping("/all") // http://localhost:3000/api/v1/customers
     public List<Customer> customers() {
         return customerService.getCustomers();
     }
 
-    @GetMapping("/customer/{id}") // http://localhost:3000/api/v1/customers/id-argument
+    @GetMapping("/{id}") // http://localhost:3000/api/v1/customers/id-argument
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
         return customerService.getCustomerById(id); // Extract id from path
     }
@@ -48,14 +48,14 @@ public class CustomerController {
         customerService.registerNewCustomer(customer);
     }
 
-    @PutMapping(value = "{id}")
+    @PutMapping(value = "/{id}")
     public void updateProduct(@PathVariable("id") long id, @RequestBody Customer customer) {
         System.out.println("hello");
         System.out.println(id);
         customerService.updateCustomer(id, customer);
     }
 
-    @DeleteMapping("{id}") // http://localhost:3000/api/v1/customers/id
+    @DeleteMapping("/{id}") // http://localhost:3000/api/v1/customers/id
     public void deleteCustomer(@PathVariable long id) { // extracts id-part
         customerService.deleteCustomer(id); // Operate on the extracted id-part
     }
