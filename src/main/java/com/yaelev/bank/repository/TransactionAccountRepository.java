@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface TransactionAccountRepository extends CrudRepository<TransactionAccount, Long> {
 
-    Optional<TransactionAccount> findTransactionAccountByEmail(String accountNo);
+    Optional<TransactionAccount> findTransactionAccountByAccountNo(String accountNo);
 
 }
