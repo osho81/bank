@@ -23,6 +23,7 @@ public class TransactionAccountController {
         this.transactionAccountService = transactionAccountService;
     }
 
+    // Working fine, 220728
     @GetMapping("/all")
     public List<TransactionAccount> transactionAccounts() {
         return transactionAccountService.getCustomers();
