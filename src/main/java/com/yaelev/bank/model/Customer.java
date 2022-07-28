@@ -3,13 +3,14 @@ package com.yaelev.bank.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 // Part of "Model"; POJO
 
 @Entity // Hibernate related annotation (required to map this class to DB)
-@Table // Specifying DB component
+@Table //(name="customer", schema = "bank") // Specifying DB component
 public class Customer {
 
     @Id // Required to make some form of sequencing for the table
@@ -36,11 +37,16 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
+
+    // "ONE customer can have MANY accounts"
+    // And "this column is owned by/mapped by customer column in TransactionAccount"
+    @OneToMany(mappedBy = "customer") // cascade = CascadeType.ALL
+    // @JoinColumn(name ="ct_id", referencedColumnName = "id")
+    private List<TransactionAccount> transactionAccounts;
+
     @Transient // Column/variable NOT stored in DB; only used in java project
     private int age; // Also remove from constructor
 
-
-    // Default constructor
     public Customer() {
     }
 
@@ -53,71 +59,63 @@ public class Customer {
         this.ssn = ssn;
         this.address = address;
         this.email = email;
+        this.transactionAccounts = new ArrayList<>();
     }
 
     // Getters and setters
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
-
     public String getfName() {
         return fName;
     }
-
     public void setfName(String fName) {
         this.fName = fName;
     }
-
     public String getlName() {
         return lName;
     }
-
     public void setlName(String lName) {
         this.lName = lName;
     }
-
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
-
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
     public String getSsn() {
         return ssn;
     }
-
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
-
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
-
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public int getAge() {
         return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
     }
-
     public void setAge(int age) {
         this.age = age;
+    }
+    public List<TransactionAccount> getTransactionAccounts() {
+        return transactionAccounts;
+    }
+    public void setTransactionAccounts(List<TransactionAccount> transactionAccounts) {
+        this.transactionAccounts = transactionAccounts;
     }
 
     @Override
@@ -143,6 +141,8 @@ public class Customer {
                 ", ssn='" + ssn + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
+                ", transactionAccounts=" + transactionAccounts +
+                ", age=" + age +
                 '}';
     }
 }

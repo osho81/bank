@@ -1,9 +1,11 @@
 package com.yaelev.bank.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table //(name="transactionaccount", schema = "bank")
 public class TransactionAccount {
 
     @Id
@@ -17,25 +19,24 @@ public class TransactionAccount {
     @Column(name = "balance")
     private double balance;
 
-    // @Transient
+    // "MANY accounts can belong to ONE customer"
     @ManyToOne
-    private Customer owner;
-
-    // Constructor, creating account without assigning it to an owner
-
+    @JsonBackReference
+    // @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     public TransactionAccount() {
     }
 
-    // Constructor when no owner is set at start
+    // Constructor when no customer/owner is set at start
     public TransactionAccount(String accountNo) {
         setAccountNo(accountNo);
     }
 
-    // Constructor when both account number and owner is set at start
-    public TransactionAccount(String accountNo, Customer owner) {
+    // Constructor when both account number and customer/owner is set at start
+    public TransactionAccount(String accountNo, Customer customer) {
         setAccountNo(accountNo);
-        this.owner = owner;
+        this.customer = customer;
     }
 
     public String getAccountNo() {
@@ -83,13 +84,13 @@ public class TransactionAccount {
         }
     }
 
-    public Customer getOwner() {
-        return owner;
+    public Customer getCustomer() {
+        return customer;
     }
 
     // E.g. to assign an already created account to a customer
-    public void setOwner(Customer owner) {
-        this.owner = owner;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
 
@@ -99,7 +100,7 @@ public class TransactionAccount {
                 "id=" + id +
                 ", accountNo='" + accountNo + '\'' +
                 ", balance=" + balance +
-                ", owner=" + owner +
+                ", customer=" + customer +
                 '}';
     }
 }

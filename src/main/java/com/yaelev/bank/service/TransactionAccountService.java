@@ -37,6 +37,9 @@ public class TransactionAccountService {
 
         if (foundByAccountNo.isPresent()) {
             throw new IllegalStateException(transactionAccount.getAccountNo() + " is used by another user");
+        } else {
+            System.out.println("New account registered: " + transactionAccount);
+            transactionAccountRepository.save(transactionAccount);
         }
 
 

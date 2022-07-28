@@ -37,6 +37,11 @@ public class TransactionAccountController {
         transactionAccountService.registerTransactionAccount(transactionAccount);
     }
 
+    @PutMapping("/{id}")
+    public void updateTransactionAccount(@PathVariable("id") long id,
+                                         @RequestBody TransactionAccount transactionAccount) {
+    }
+
 
 
 }

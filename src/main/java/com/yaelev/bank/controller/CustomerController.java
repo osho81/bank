@@ -15,7 +15,7 @@ import java.util.List;
 // Solving frontend cors policy for api requests
 @CrossOrigin(origins = "http://localhost:3000") // points to react (spring port: 8080)
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
-@RequestMapping(path = "/api/v1/customer")
+@RequestMapping(path = "/api/v1/customer") // i.e. http://localhost:8080/api/v1/customer
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -46,7 +46,7 @@ public class CustomerController {
         customerService.registerNewCustomer(customer);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(path = "/{id}")
     public void updateProduct(@PathVariable("id") long id, @RequestBody Customer customer) {
         System.out.println("hello");
         System.out.println(id);
@@ -55,7 +55,7 @@ public class CustomerController {
 
     @DeleteMapping("/{id}") // http://localhost:3000/api/v1/customers/id
     public void deleteCustomer(@PathVariable long id) { // extracts id-part
-        customerService.deleteCustomer(id); // Operate on the extracted id-part
+        customerService.deleteCustomer(id); // Operate on the extracted id
     }
 
 }

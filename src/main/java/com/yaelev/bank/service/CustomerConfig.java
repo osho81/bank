@@ -3,6 +3,7 @@ package com.yaelev.bank.service;
 // Class for adding data to Customer table
 
 import com.yaelev.bank.model.Customer;
+import com.yaelev.bank.model.TransactionAccount;
 import com.yaelev.bank.repository.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
