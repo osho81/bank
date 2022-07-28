@@ -1,6 +1,7 @@
 package com.yaelev.bank.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
@@ -21,7 +22,7 @@ public class TransactionAccount {
 
     // "MANY accounts can belong to ONE customer"
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference // Solves the infinite recursion problem
     // @JoinColumn(name = "customer_id")
     private Customer customer;
 
@@ -92,7 +93,6 @@ public class TransactionAccount {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
 
     @Override
     public String toString() {

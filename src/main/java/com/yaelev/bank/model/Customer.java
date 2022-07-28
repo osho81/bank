@@ -1,5 +1,8 @@
 package com.yaelev.bank.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
@@ -41,7 +44,8 @@ public class Customer {
     // "ONE customer can have MANY accounts"
     // And "this column is owned by/mapped by customer column in TransactionAccount"
     @OneToMany(mappedBy = "customer") // cascade = CascadeType.ALL
-    // @JoinColumn(name ="ct_id", referencedColumnName = "id")
+    @JsonManagedReference // Solves the infinite recursion problem
+    // @JoinColumn(name ="ct_id", referencedColumnName = "id") // Already uses MappedBy
     private List<TransactionAccount> transactionAccounts;
 
     @Transient // Column/variable NOT stored in DB; only used in java project
