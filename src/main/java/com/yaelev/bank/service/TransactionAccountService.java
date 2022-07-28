@@ -29,4 +29,8 @@ public class TransactionAccountService {
         );
         return ResponseEntity.ok(transactionAccount);
     }
+
+    public void registerTransactionAccount(TransactionAccount transactionAccount) {
+
+    }
 }

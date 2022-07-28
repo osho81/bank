@@ -34,5 +34,4 @@ build/
 ### VS Code ###
 .vscode/
 
-# Editor-based Rest Client (manually added to gitignore)
-.idea/httpRequests
+src/main/resources\application.properties
