@@ -5,7 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface TransactionAccountRepository extends CrudRepository<TransactionAccount, Long> {
-
-    // Optional<TransactionAccount> findTransactionAccountByAccountNo(String accountNo);
+    Optional<TransactionAccount> findTrAccountByAccountNo(String accountNo);
 
 }

@@ -42,9 +42,9 @@ public class CustomerService {
     public void registerNewCustomer(Customer customer) {
         Optional<Customer> foundByEmail = customerRepository.findCustomerByEmail(customer.getEmail());
         if (foundByEmail.isPresent()) { // If returned container is not empty...
-            throw new IllegalStateException(foundByEmail + " is used by another user");
+            throw new IllegalStateException(customer.getEmail() + " is used by another user");
         } else {
-            System.out.println("new customer added; " + customer);
+            System.out.println("New customer added; " + customer);
             customerRepository.save(customer);
         }
     }

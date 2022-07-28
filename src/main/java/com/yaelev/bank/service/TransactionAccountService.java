@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionAccountService {
@@ -31,6 +32,14 @@ public class TransactionAccountService {
     }
 
     public void registerTransactionAccount(TransactionAccount transactionAccount) {
+        Optional<TransactionAccount> foundByAccountNo = transactionAccountRepository
+                .findTrAccountByAccountNo(transactionAccount.getAccountNo());
+
+        if (foundByAccountNo.isPresent()) {
+            throw new IllegalStateException(transactionAccount.getAccountNo() + " is used by another user");
+        }
+
+
 
     }
 }
