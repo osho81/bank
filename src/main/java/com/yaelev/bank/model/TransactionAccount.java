@@ -8,7 +8,8 @@ public class TransactionAccount {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "t-account_seq", sequenceName = "common_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "t-account_seq")
     private long id;
 
     @Column(name = "accountNo")
@@ -17,7 +18,8 @@ public class TransactionAccount {
     @Column(name = "balance")
     private double balance;
 
-    @Transient
+    // @Transient
+    @ManyToOne
     private Customer owner;
 
     // Constructor, creating account without assigning it to an owner
@@ -84,4 +86,13 @@ public class TransactionAccount {
     }
 
 
+    @Override
+    public String toString() {
+        return "TransactionAccount{" +
+                "id=" + id +
+                ", accountNo='" + accountNo + '\'' +
+                ", balance=" + balance +
+                ", owner=" + owner +
+                '}';
+    }
 }

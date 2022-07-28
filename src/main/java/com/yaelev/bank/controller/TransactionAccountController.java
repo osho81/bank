@@ -4,10 +4,9 @@ import com.yaelev.bank.model.TransactionAccount;
 import com.yaelev.bank.repository.TransactionAccountRepository;
 import com.yaelev.bank.service.TransactionAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -23,10 +22,16 @@ public class TransactionAccountController {
         this.transactionAccountService = transactionAccountService;
     }
 
-    // Working fine, 220728
     @GetMapping("/all")
-    public List<TransactionAccount> transactionAccounts() {
-        return transactionAccountService.getCustomers();
+    public List<TransactionAccount> getTransactionAccounts() {
+        return transactionAccountService.getTransactionAccounts();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TransactionAccount> getTransactionAccountById(@PathVariable("id") long id) {
+        return transactionAccountService.getTransactionAccountById(id);
+    }
+
+
 
 }

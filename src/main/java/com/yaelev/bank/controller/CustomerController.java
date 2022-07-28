@@ -32,7 +32,7 @@ public class CustomerController {
     }
 
     @GetMapping("/all") // http://localhost:3000/api/v1/customers
-    public List<Customer> customers() {
+    public List<Customer> getCustomers() {
         return customerService.getCustomers();
     }
 
