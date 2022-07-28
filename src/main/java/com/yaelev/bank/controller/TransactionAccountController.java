@@ -35,6 +35,8 @@ public class TransactionAccountController {
     @PostMapping()
     public void registerNewTransactionAccount(@RequestBody TransactionAccount transactionAccount) {
         transactionAccountService.registerTransactionAccount(transactionAccount);
+
+        // Something
     }
 
 
