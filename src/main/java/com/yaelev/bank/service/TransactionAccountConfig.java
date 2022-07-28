@@ -15,9 +15,9 @@ public class TransactionAccountConfig {
     CommandLineRunner secondCommandLineRunner (TransactionAccountRepository repository) {
         return args -> {
 
-            TransactionAccount transactionAccount1 = new TransactionAccount("123456789");
+            TransactionAccount transactionAccount1 = new TransactionAccount("741741789");
 
-            TransactionAccount transactionAccount2 = new TransactionAccount("123456789");
+            TransactionAccount transactionAccount2 = new TransactionAccount("632563789");
 
             TransactionAccount transactionAccount3 = new TransactionAccount("123456789");
 

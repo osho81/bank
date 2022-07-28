@@ -32,6 +32,11 @@ public class TransactionAccountController {
         return transactionAccountService.getTransactionAccountById(id);
     }
 
+    @PostMapping()
+    public void registerNewTransactionAccount() {
+        // CONTINUE HERE!
+    }
+
 
 
 }

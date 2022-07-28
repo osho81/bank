@@ -8,8 +8,7 @@ public class TransactionAccount {
 
     @Id
     @Column(name = "id")
-    @SequenceGenerator(name = "t-account_seq", sequenceName = "common_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "t-account_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "accountNo")
@@ -53,11 +52,19 @@ public class TransactionAccount {
             }
         }
         // If account number is 9 characters and only numbers, accept it
-        if (accountNo.length() >= 6 && onlyNums) {
+        if (accountNo.length() >= 9 && onlyNums) {
             this.accountNo = accountNo;
         } else {
-            throw new IllegalArgumentException("Account number must be at least 6 digits");
+            throw new IllegalArgumentException("Account number must be at least 9 digits");
         }
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public double getBalance() {
