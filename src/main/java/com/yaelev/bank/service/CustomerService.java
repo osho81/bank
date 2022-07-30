@@ -1,6 +1,7 @@
 package com.yaelev.bank.service;
 
 import com.yaelev.bank.model.Customer;
+import com.yaelev.bank.model.TransactionAccount;
 import com.yaelev.bank.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -106,7 +107,12 @@ public class CustomerService {
 
             // First (because of fk constraints issues), release all owned accounts:
             Customer tempCustomer = customerRepository.findById(id).get();
-            tempCustomer.setTransactionAccounts(null);
+            List<TransactionAccount> associatedAccounts = tempCustomer.getTransactionAccounts();
+            for (TransactionAccount acc : associatedAccounts) {
+                Customer owner = acc.getCustomer();
+                owner = null;
+            }
+
             customerRepository.save(tempCustomer); // Save it temporary
 
             noAssociatedAccounts = true;
