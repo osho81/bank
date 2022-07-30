@@ -14,11 +14,11 @@ public class TransactionAccountConfig {
     CommandLineRunner secondCommandLineRunner (TransactionAccountRepository repository) {
         return args -> {
 
-            TransactionAccount transactionAccount1 = new TransactionAccount("741741789", null);
+            TransactionAccount transactionAccount1 = new TransactionAccount("741741789", 0, null);
 
-            TransactionAccount transactionAccount2 = new TransactionAccount("632563789", null);
+            TransactionAccount transactionAccount2 = new TransactionAccount("632563789", 0, null);
 
-            TransactionAccount transactionAccount3 = new TransactionAccount("123456789", null);
+            TransactionAccount transactionAccount3 = new TransactionAccount("123456789", 0, null);
 
             repository.saveAll(List.of(transactionAccount1, transactionAccount2, transactionAccount3)
             );

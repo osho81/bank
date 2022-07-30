@@ -119,6 +119,11 @@ public class Customer {
         this.transactionAccounts = transactionAccounts;
     }
 
+    // Customized method, when need to add to account list
+    public void addToTransactionAccounts(TransactionAccount transactionAccount) {
+        this.transactionAccounts.add(transactionAccount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

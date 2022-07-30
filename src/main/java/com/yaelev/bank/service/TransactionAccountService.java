@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,17 +43,14 @@ public class TransactionAccountService {
             transactionAccountRepository.save(transactionAccount);
         }
 
-
-
     }
 
-    public void updateTransactionAccount(long id, TransactionAccount transactionAccount) {
+    @Transactional
+    public TransactionAccount updateTransactionAccount(long id, TransactionAccount transactionAccount) {
 
-        // Find and retrieve if the transactionAccount already exist
-        TransactionAccount existingTransactionAccount = transactionAccountRepository.findById(id).
-                orElseThrow( () -> new IllegalStateException("No transaction account with id " + id));
+        TransactionAccount existingTransactionAccount = transactionAccountRepository.findById(id).get();
+        // orElseThrow( () -> new IllegalStateException("No transaction account with id " + id));
 
-        // Check if account no is already in use
         Optional<TransactionAccount> foundByAccountNo = transactionAccountRepository
                 .findTrAccountByAccountNo(transactionAccount.getAccountNo());
         if (foundByAccountNo.isPresent()) {
@@ -63,11 +61,16 @@ public class TransactionAccountService {
             existingTransactionAccount.setAccountNo(transactionAccount.getAccountNo());
         }
 
-        // set initial balance; setBalance in TransactionAccountClass already has validation
+        // Balance is checked in TransactionAccountClass
         existingTransactionAccount.setBalance(transactionAccount.getBalance());
 
-        // Set customer/owner
+        if (existingTransactionAccount.getCustomer() != null) {
         existingTransactionAccount.setCustomer(transactionAccount.getCustomer());
+        } else {
+            throw new IllegalStateException("Customer field is empty");
+        }
 
+        transactionAccountRepository.save(existingTransactionAccount);
+        return existingTransactionAccount;
     }
 }
