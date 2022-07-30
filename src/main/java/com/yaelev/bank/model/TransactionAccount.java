@@ -1,8 +1,6 @@
 package com.yaelev.bank.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 
 @Entity
@@ -73,12 +71,12 @@ public class TransactionAccount {
         return balance;
     }
 
-    public void setBalance(double amount, boolean depositOrWithdrawal) {
-        if (depositOrWithdrawal && amount < 1000000) { // Deposit& max 1 million USD
+    public void setBalance(double amount) {
+        if ((amount > 0) && amount < 100000) { // Deposit& max 1 million USD
             balance += amount;
-        } else if (!depositOrWithdrawal && balance >= amount) { // Withdrawal
+        } else if ((amount < 0) && balance >= amount) { // Withdrawal
             balance -= amount;
-        } else if (!depositOrWithdrawal && balance < amount) { // Withdrawal but not enough money
+        } else if ((amount < 0) && balance < amount) { // Withdrawal but not enough money
             System.out.println("Cant withdraw money - You only have " + balance + " USD in your acount.");
         } else {
             System.out.println("Sorry, something went wrong");

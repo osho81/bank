@@ -40,6 +40,7 @@ public class TransactionAccountController {
     @PutMapping("/{id}")
     public void updateTransactionAccount(@PathVariable("id") long id,
                                          @RequestBody TransactionAccount transactionAccount) {
+        transactionAccountService.updateTransactionAccount(id, transactionAccount);
     }
 
 

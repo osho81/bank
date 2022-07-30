@@ -69,7 +69,7 @@ public class CustomerService {
         // Check if the email is already used by any user
         Optional<Customer> foundByEmail = customerRepository.findCustomerByEmail(customer.getEmail());
         if (foundByEmail.isPresent()) {
-            throw new IllegalStateException(foundByEmail + " is used by another user");
+            throw new IllegalStateException(customer.getEmail() + " is used by another user");
         } else if (customer.getEmail().isEmpty()) {
             throw new IllegalStateException("Email field is empty");
         } else {

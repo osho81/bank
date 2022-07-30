@@ -45,4 +45,29 @@ public class TransactionAccountService {
 
 
     }
+
+    public void updateTransactionAccount(long id, TransactionAccount transactionAccount) {
+
+        // Find and retrieve if the transactionAccount already exist
+        TransactionAccount existingTransactionAccount = transactionAccountRepository.findById(id).
+                orElseThrow( () -> new IllegalStateException("No transaction account with id " + id));
+
+        // Check if account no is already in use
+        Optional<TransactionAccount> foundByAccountNo = transactionAccountRepository
+                .findTrAccountByAccountNo(transactionAccount.getAccountNo());
+        if (foundByAccountNo.isPresent()) {
+            throw new IllegalStateException(transactionAccount.getAccountNo() + " is used by another user");
+        } else if (transactionAccount.getAccountNo().isEmpty()) {
+            throw new IllegalStateException("Account number field is empty");
+        } else {
+            existingTransactionAccount.setAccountNo(transactionAccount.getAccountNo());
+        }
+
+        // set initial balance; setBalance in TransactionAccountClass already has validation
+        existingTransactionAccount.setBalance(transactionAccount.getBalance());
+
+        // Set customer/owner
+        existingTransactionAccount.setCustomer(transactionAccount.getCustomer());
+
+    }
 }
