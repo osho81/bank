@@ -3,6 +3,7 @@ package com.yaelev.bank.service;
 import com.yaelev.bank.model.Customer;
 import com.yaelev.bank.model.TransactionAccount;
 import com.yaelev.bank.repository.CustomerRepository;
+import com.yaelev.bank.repository.TransactionAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -101,30 +102,44 @@ public class CustomerService {
     }
 
     public void deleteCustomer(long id) {
-        Optional<Customer> customerExists = customerRepository.findById(id);
-        boolean noAssociatedAccounts = false;
-        if (customerExists.isPresent()) { // If returned container is not empty...
 
-            // First (because of fk constraints issues), release all owned accounts:
-            Customer tempCustomer = customerRepository.findById(id).get();
-            List<TransactionAccount> associatedAccounts = tempCustomer.getTransactionAccounts();
-            for (TransactionAccount acc : associatedAccounts) {
-                Customer owner = acc.getCustomer();
-                owner = null;
-            }
+        Customer existingCustomer = customerRepository.findById(id).get();
 
-            customerRepository.save(tempCustomer); // Save it temporary
-
-            noAssociatedAccounts = true;
-        } else {
-            throw new IllegalStateException("Customer with id " + id + " doesn't exist");
+        List<TransactionAccount> associatedAccounts = existingCustomer.getTransactionAccounts();
+        for (TransactionAccount acc : associatedAccounts) {
+            acc.setCustomer(null);
         }
 
-        if (noAssociatedAccounts) {
-            customerRepository.deleteById(id);
-        } else {
-            throw new IllegalStateException("Something went wrong");
-        }
+        customerRepository.deleteById(id);
+
+
+//        Optional<Customer> customerExists = customerRepository.findById(id);
+//        // boolean noAssociatedAccounts = false;
+//        if (customerExists.isPresent()) { // If returned container is not empty...
+//
+//            // First (because of fk constraints issues), release all owned accounts:
+//            Customer tempCustomer = customerRepository.findById(id).get();
+//            List<TransactionAccount> associatedAccounts = tempCustomer.getTransactionAccounts();
+//            for (TransactionAccount acc : associatedAccounts) {
+//                acc.setCustomer(null);
+//            }
+//
+//            // TransactionAccountService transactionAccountService = new TransactionAccountService(transactionAccountRepository);
+//
+//            // customerRepository.save(tempCustomer); // Save it temporary
+//
+//            customerRepository.deleteById(id);
+//
+//            // noAssociatedAccounts = true;
+//        } else {
+//            throw new IllegalStateException("Customer with id " + id + " doesn't exist");
+//        }
+
+//        if (noAssociatedAccounts) {
+//            customerRepository.deleteById(id);
+//        } else {
+//            throw new IllegalStateException("Something went wrong");
+//        }
 
     }
 }
