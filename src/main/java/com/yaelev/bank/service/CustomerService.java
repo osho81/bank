@@ -24,9 +24,18 @@ public class CustomerService {
     // (spring enables skipping "implement" keyword: https://spring.io/guides/gs/accessing-data-jpa/ )
     private final CustomerRepository customerRepository;
 
+    // TransactionAccountRepository/Service needed for deletion, de-association of children:
+    private final TransactionAccountRepository transactionAccountRepository;
+    // private final TransactionAccountService transactionAccountService;
+
     @Autowired // Autowire/inject the implemented interface
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository,
+                                   TransactionAccountRepository transactionAccountRepository) {
         this.customerRepository = customerRepository;
+
+        // Needed for deletion, de-association of children:
+        this.transactionAccountRepository = transactionAccountRepository;
+        // this.transactionAccountService = transactionAccountService;
     }
 
     // Get all customers
@@ -103,43 +112,21 @@ public class CustomerService {
 
     public void deleteCustomer(long id) {
 
-        Customer existingCustomer = customerRepository.findById(id).get();
+        Customer disassociatedCustomer = disassociateAccounts(id);
+        customerRepository.deleteById(disassociatedCustomer.getId());
+    }
 
-        List<TransactionAccount> associatedAccounts = existingCustomer.getTransactionAccounts();
+    // Method for removing relation between customer and accounts
+    // (Could also disable fk constraint checks)
+    private Customer disassociateAccounts(long id) {
+        Customer customer = customerRepository.findById(id).get();
+        List<TransactionAccount> associatedAccounts = customer.getTransactionAccounts();
         for (TransactionAccount acc : associatedAccounts) {
-            acc.setCustomer(null);
+            TransactionAccount currentAcc = transactionAccountRepository.findById(acc.getId()).get();
+            currentAcc.setCustomer(null);
+            transactionAccountRepository.save(currentAcc);
         }
 
-        customerRepository.deleteById(id);
-
-
-//        Optional<Customer> customerExists = customerRepository.findById(id);
-//        // boolean noAssociatedAccounts = false;
-//        if (customerExists.isPresent()) { // If returned container is not empty...
-//
-//            // First (because of fk constraints issues), release all owned accounts:
-//            Customer tempCustomer = customerRepository.findById(id).get();
-//            List<TransactionAccount> associatedAccounts = tempCustomer.getTransactionAccounts();
-//            for (TransactionAccount acc : associatedAccounts) {
-//                acc.setCustomer(null);
-//            }
-//
-//            // TransactionAccountService transactionAccountService = new TransactionAccountService(transactionAccountRepository);
-//
-//            // customerRepository.save(tempCustomer); // Save it temporary
-//
-//            customerRepository.deleteById(id);
-//
-//            // noAssociatedAccounts = true;
-//        } else {
-//            throw new IllegalStateException("Customer with id " + id + " doesn't exist");
-//        }
-
-//        if (noAssociatedAccounts) {
-//            customerRepository.deleteById(id);
-//        } else {
-//            throw new IllegalStateException("Something went wrong");
-//        }
-
+        return customerRepository.save(customer);
     }
 }
