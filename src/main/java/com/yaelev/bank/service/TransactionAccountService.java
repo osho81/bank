@@ -1,12 +1,10 @@
 package com.yaelev.bank.service;
 
-import com.yaelev.bank.model.Customer;
 import com.yaelev.bank.model.TransactionAccount;
 import com.yaelev.bank.repository.TransactionAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -48,8 +46,8 @@ public class TransactionAccountService {
     @Transactional
     public TransactionAccount updateTransactionAccount(long id, TransactionAccount transactionAccount) {
 
-        TransactionAccount existingTransactionAccount = transactionAccountRepository.findById(id).get();
-        // orElseThrow( () -> new IllegalStateException("No transaction account with id " + id));
+        TransactionAccount existingTransactionAccount = transactionAccountRepository.findById(id)
+                .orElseThrow( () -> new IllegalStateException("No transaction account with id " + id));
 
         Optional<TransactionAccount> foundByAccountNo = transactionAccountRepository
                 .findTrAccountByAccountNo(transactionAccount.getAccountNo());
@@ -61,16 +59,40 @@ public class TransactionAccountService {
             existingTransactionAccount.setAccountNo(transactionAccount.getAccountNo());
         }
 
-        // Balance is checked in TransactionAccountClass
-        existingTransactionAccount.setBalance(transactionAccount.getBalance());
+        // Determine deposit or withdrawal
+        if ((transactionAccount.getBalance() > 0) && transactionAccount.getBalance() < 100000) {
+            existingTransactionAccount.setBalance(transactionAccount.getBalance());
+        } else if ((transactionAccount.getBalance() < 0)
+                && existingTransactionAccount.getBalance() >= Math.abs(transactionAccount.getBalance())) {
+            existingTransactionAccount.setBalance(transactionAccount.getBalance());
+        } else if ((transactionAccount.getBalance() < 0)
+                && existingTransactionAccount.getBalance() < Math.abs(transactionAccount.getBalance())) {
+            System.out.println("Cant withdraw money: You only have "
+                    + existingTransactionAccount.getBalance() + " USD in your account.");
+        } else if (transactionAccount.getBalance() == 0) {
+            System.out.println("Zero change to the account balance");
+        } else {
+            System.out.println("Sorry, something went wrong");
+        }
 
-        if (existingTransactionAccount.getCustomer() != null) {
-        existingTransactionAccount.setCustomer(transactionAccount.getCustomer());
+        if (transactionAccount.getCustomer() != null) {
+            existingTransactionAccount.setCustomer(transactionAccount.getCustomer());
+
         } else {
             throw new IllegalStateException("Customer field is empty");
         }
 
+        // save existing account to database
         transactionAccountRepository.save(existingTransactionAccount);
         return existingTransactionAccount;
+    }
+
+    public void deleteTransactionAccount(long id) {
+        Optional<TransactionAccount> transactionAccountExists = transactionAccountRepository.findById(id);
+        if (transactionAccountExists.isPresent()) { // If returned container is not empty...
+            transactionAccountRepository.deleteById(id);
+        } else {
+            throw new IllegalStateException("Account with id " + id + " doesn't exist");
+        }
     }
 }

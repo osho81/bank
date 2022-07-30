@@ -26,7 +26,8 @@ public class CustomerConfig {
                     LocalDate.of(1990, Month.MAY, 5),
                     "900505-7376",
                     "Second street 1",
-                    "donaldduck@gmail.com"
+                    "donaldduck@gmail.com",
+                    null
             );
 
             Customer mickey = new Customer(
@@ -35,7 +36,8 @@ public class CustomerConfig {
                     LocalDate.of(1980, Month.JUNE, 6),
                     "800606-4175",
                     "First street 1",
-                    "mickey@gmail.com"
+                    "mickey@gmail.com",
+                    null
             );
 
             Customer minnie = new Customer(
@@ -44,7 +46,8 @@ public class CustomerConfig {
                     LocalDate.of(1985, Month.JULY, 7),
                     "850707-5565",
                     "First street 2",
-                    "minnie@gmail.com"
+                    "minnie@gmail.com",
+                    null
             );
 
             repository.saveAll(List.of(donald, mickey, minnie)

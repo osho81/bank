@@ -49,16 +49,6 @@ public class CustomerService {
         }
     }
 
-    public void deleteCustomer(long id) {
-        Optional<Customer> customerExists = customerRepository.findById(id);
-        if (customerExists.isPresent()) { // If returned container is not empty...
-            customerRepository.deleteById(id);
-        } else {
-            throw new IllegalStateException("Customer with id " + id + " doesn't exist");
-        }
-
-    }
-
     @Transactional
     public Customer updateCustomer(long id, Customer customer) {
 
@@ -107,6 +97,28 @@ public class CustomerService {
         // save existing customer to database
         customerRepository.save(existingCustomer);
         return existingCustomer;
+    }
+
+    public void deleteCustomer(long id) {
+        Optional<Customer> customerExists = customerRepository.findById(id);
+        boolean noAssociatedAccounts = false;
+        if (customerExists.isPresent()) { // If returned container is not empty...
+
+            // First (because of fk constraints issues), release all owned accounts:
+            Customer tempCustomer = customerRepository.findById(id).get();
+            tempCustomer.setTransactionAccounts(null);
+            customerRepository.save(tempCustomer); // Save it temporary
+
+            noAssociatedAccounts = true;
+        } else {
+            throw new IllegalStateException("Customer with id " + id + " doesn't exist");
+        }
+
+        if (noAssociatedAccounts) {
+            customerRepository.deleteById(id);
+        } else {
+            throw new IllegalStateException("Something went wrong");
+        }
 
     }
 }

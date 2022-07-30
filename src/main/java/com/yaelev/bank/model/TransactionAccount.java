@@ -35,7 +35,7 @@ public class TransactionAccount {
     // Constructor when both account number and customer/owner is set at start
     public TransactionAccount(String accountNo, double balance, Customer customer) {
         setAccountNo(accountNo);
-        setBalance(balance);
+        this.balance = balance;
         this.customer = customer;
     }
 
@@ -73,16 +73,7 @@ public class TransactionAccount {
     }
 
     public void setBalance(double amount) {
-        if ((amount > 0) && amount < 100000) { // Deposit& max 1 million USD
-            this.balance += amount;
-            // Convert amount to positive number for accurate comparison and calculation
-        } else if ((amount < 0) && this.balance >= Math.abs(amount)) { // Withdrawal
-            this.balance -= Math.abs(amount);
-        } else if ((amount < 0) && this.balance < Math.abs(amount)) { // Withdrawal but not enough money
-            System.out.println("Cant withdraw money: You only have " + this.balance + " USD in your account.");
-        } else {
-            System.out.println("Sorry, something went wrong");
-        }
+        this.balance += amount;
     }
 
     public Customer getCustomer() {

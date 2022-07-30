@@ -43,6 +43,11 @@ public class TransactionAccountController {
         transactionAccountService.updateTransactionAccount(id, transactionAccount);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteTransactionAccount(@PathVariable("id") long id) {
+        transactionAccountService.deleteTransactionAccount(id);
+    }
+
 
 
 }
