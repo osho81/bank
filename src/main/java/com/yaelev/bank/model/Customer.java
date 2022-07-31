@@ -41,7 +41,6 @@ public class Customer {
     // "ONE customer can have MANY accounts"
     // And "this column is owned by/mapped by customer column in TransactionAccount"
     @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
-    // @JsonManagedReference // Solves the infinite recursion problem
     // @JoinColumn(name ="ct_id", referencedColumnName = "id") // Already uses MappedBy
     private List<TransactionAccount> transactionAccounts = new ArrayList<>();
 
@@ -114,7 +113,7 @@ public class Customer {
         this.age = age;
     }
 
-    @JsonManagedReference
+    @JsonManagedReference // Solves the infinite recursion problem
     public List<TransactionAccount> getTransactionAccounts() {
         return transactionAccounts;
     }
