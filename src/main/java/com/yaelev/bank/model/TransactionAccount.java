@@ -20,7 +20,7 @@ public class TransactionAccount {
 
     // "MANY accounts can belong to ONE customer"
     @ManyToOne
-    @JsonBackReference // Solves the infinite recursion problem
+    // @JsonBackReference // Solves the infinite recursion problem
     // @JoinColumn(name = "customer_id")
     private Customer customer;
 
@@ -64,19 +64,17 @@ public class TransactionAccount {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
-
     public double getBalance() {
         return balance;
     }
-
     public void setBalance(double amount) {
         this.balance += amount;
     }
 
+    @JsonBackReference
     public Customer getCustomer() {
         return customer;
     }
