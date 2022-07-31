@@ -37,8 +37,7 @@ public class Customer {
 
     @Column(name = "email")
     private String email;
-
-
+    
     // "ONE customer can have MANY accounts"
     // And "this column is owned by/mapped by customer column in TransactionAccount"
     @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
