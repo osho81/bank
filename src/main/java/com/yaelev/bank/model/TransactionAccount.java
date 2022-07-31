@@ -21,7 +21,7 @@ public class TransactionAccount {
     // "MANY accounts can belong to ONE customer"
     @ManyToOne
     // @JsonBackReference // Solves the infinite recursion problem
-    // @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     public TransactionAccount() {
