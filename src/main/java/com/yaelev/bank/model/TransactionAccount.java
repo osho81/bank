@@ -28,8 +28,9 @@ public class TransactionAccount {
     }
 
     // Constructor when no customer/owner is set at start
-    public TransactionAccount(String accountNo) {
+    public TransactionAccount(String accountNo, double balance) {
         setAccountNo(accountNo);
+        this.balance = balance;
     }
 
     // Constructor when both account number and customer/owner is set at start
