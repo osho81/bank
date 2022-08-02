@@ -20,7 +20,7 @@ public class TransactionAccount {
 
     // "MANY accounts can belong to ONE customer"
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    // @JoinColumn(name = "customer_id")
     private Customer customer;
 
     public TransactionAccount() {

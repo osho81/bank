@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +39,10 @@ public class CustomerService {
         // this.transactionAccountService = transactionAccountService;
     }
 
+
+
+    //////////////////////////// READ //////////////////////////
+
     // Get all customers
     public List<Customer> getCustomers() {
         return (List<Customer>) customerRepository.findAll();
@@ -50,6 +55,18 @@ public class CustomerService {
         return ResponseEntity.ok(customer);
     }
 
+
+//    public Customer getCustomerByTransactionAccount(long id) {
+//        TransactionAccount transactionAccount = transactionAccountRepository.findById(id).get();
+//        List<TransactionAccount> accList = new ArrayList<>();
+//        accList.add(transactionAccount);
+//        ArrayList<Customer> customerByTransactionAccount = customerRepository.findAllByTransactionAccountsContaining(accList);
+//        return customerByTransactionAccount.get(0);
+//    }
+
+
+    //////////////////////////// CREATE //////////////////////////
+
     public void registerNewCustomer(Customer customer) {
         Optional<Customer> foundByEmail = customerRepository.findCustomerByEmail(customer.getEmail());
         if (foundByEmail.isPresent()) { // If returned container is not empty...
@@ -59,6 +76,9 @@ public class CustomerService {
             customerRepository.save(customer);
         }
     }
+
+
+    //////////////////////////// UPDATE //////////////////////////
 
     @Transactional
     public Customer updateCustomer(long id, Customer customer) {
@@ -110,11 +130,15 @@ public class CustomerService {
         return existingCustomer;
     }
 
+
+    //////////////////////////// DELETE //////////////////////////
+
     public void deleteCustomer(long id) {
 
         Customer disassociatedCustomer = disassociateAccounts(id);
         customerRepository.deleteById(disassociatedCustomer.getId());
     }
+
 
     // Method for removing relation between customer and accounts
     // (Could also disable fk constraint checks)
@@ -129,4 +153,5 @@ public class CustomerService {
 
         return customerRepository.save(customer);
     }
+
 }

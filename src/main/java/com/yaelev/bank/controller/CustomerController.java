@@ -1,6 +1,7 @@
 package com.yaelev.bank.controller;
 
 import com.yaelev.bank.model.Customer;
+import com.yaelev.bank.model.TransactionAccount;
 import com.yaelev.bank.repository.CustomerRepository;
 import com.yaelev.bank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,12 @@ public class CustomerController {
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
         return customerService.getCustomerById(id); // Extract id from path
     }
+
+    // Customized mapping, find customer by account id
+//    @GetMapping("/by/{id}")
+//    public Customer getCustomerByTransactionAccount(@PathVariable("id") long id) {
+//        return customerService.getCustomerByTransactionAccount(id);
+//    }
 
     @PostMapping // @RequestBody is for input
     public void registerNewCustomer(@RequestBody Customer customer) {

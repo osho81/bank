@@ -32,6 +32,12 @@ public class TransactionAccountController {
         return transactionAccountService.getTransactionAccountById(id);
     }
 
+    // Customized mapping, find accounts by customer id
+    @GetMapping("/by/{id}") // note: by customer id
+    public List<TransactionAccount> getTransactionAccountByCustomer(@PathVariable("id") long id) {
+        return transactionAccountService.getTransactionAccountsByCustomer(id);
+    }
+
     @PostMapping()
     public void registerNewTransactionAccount(@RequestBody TransactionAccount transactionAccount) {
         transactionAccountService.registerTransactionAccount(transactionAccount);

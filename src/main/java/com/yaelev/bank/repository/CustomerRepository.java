@@ -1,9 +1,7 @@
 package com.yaelev.bank.repository;
 
 import com.yaelev.bank.model.Customer;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
-
 import java.util.Optional;
 
 // "Data access layer"; enables CRUD operations; used by related service class
@@ -18,6 +16,9 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     // Compare e.g.:
     // @Query("select c from Customer c where c.email = ?1")
+
+    // ArrayList<Customer> findAllByTransactionAccountsContaining(List<TransactionAccount> transactionAccounts);
+
 
 }
 
