@@ -42,12 +42,6 @@ public class CustomerController {
         return customerService.getCustomerById(id); // Extract id from path
     }
 
-    // Customized mapping, find customer by account id
-//    @GetMapping("/by/{id}")
-//    public Customer getCustomerByTransactionAccount(@PathVariable("id") long id) {
-//        return customerService.getCustomerByTransactionAccount(id);
-//    }
-
     @PostMapping // @RequestBody is for input
     public void registerNewCustomer(@RequestBody Customer customer) {
         customerService.registerNewCustomer(customer);

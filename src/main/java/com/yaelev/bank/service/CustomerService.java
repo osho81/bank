@@ -56,15 +56,6 @@ public class CustomerService {
     }
 
 
-//    public Customer getCustomerByTransactionAccount(long id) {
-//        TransactionAccount transactionAccount = transactionAccountRepository.findById(id).get();
-//        List<TransactionAccount> accList = new ArrayList<>();
-//        accList.add(transactionAccount);
-//        ArrayList<Customer> customerByTransactionAccount = customerRepository.findAllByTransactionAccountsContaining(accList);
-//        return customerByTransactionAccount.get(0);
-//    }
-
-
     //////////////////////////// CREATE //////////////////////////
 
     public void registerNewCustomer(Customer customer) {
