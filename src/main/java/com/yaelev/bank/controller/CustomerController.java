@@ -1,7 +1,6 @@
 package com.yaelev.bank.controller;
 
 import com.yaelev.bank.model.Customer;
-import com.yaelev.bank.model.TransactionAccount;
 import com.yaelev.bank.repository.CustomerRepository;
 import com.yaelev.bank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
