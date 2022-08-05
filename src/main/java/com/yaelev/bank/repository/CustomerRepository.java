@@ -17,8 +17,5 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     // Compare e.g.:
     // @Query("select c from Customer c where c.email = ?1")
 
-    // ArrayList<Customer> findAllByTransactionAccountsContaining(List<TransactionAccount> transactionAccounts);
-
-
 }
 

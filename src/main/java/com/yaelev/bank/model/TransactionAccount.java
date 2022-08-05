@@ -8,8 +8,11 @@ import javax.persistence.*;
 public class TransactionAccount {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "transactionaccount_sequence",
+            sequenceName = "transactionaccount_sequence",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactionaccount_sequence")
     private long id;
 
     @Column(name = "accountNo")
@@ -86,7 +89,7 @@ public class TransactionAccount {
                 "id=" + id +
                 ", accountNo='" + accountNo + '\'' +
                 ", balance=" + balance +
-                ", customer=" + customer.getId() +
+                ", customer=" + customer +
                 '}';
     }
 }
