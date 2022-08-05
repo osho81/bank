@@ -33,7 +33,7 @@ public class TransactionAccountController {
     }
 
     // Customized mapping, find accounts by customer id
-    @GetMapping("/by/{id}") // note: by customer-ID
+    @GetMapping("/by/{id}") // note: by customer-id
     public List<TransactionAccount> getTransactionAccountByCustomer(@PathVariable("id") long id) {
         return transactionAccountService.getTransactionAccountsByCustomer(id);
     }
