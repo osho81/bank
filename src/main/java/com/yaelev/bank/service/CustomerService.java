@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,15 +53,6 @@ public class CustomerService {
                 new IllegalStateException("Customer with id " + id + " doesn't exist"));
         return ResponseEntity.ok(customer);
     }
-
-
-//    public Customer getCustomerByTransactionAccount(long id) {
-//        TransactionAccount transactionAccount = transactionAccountRepository.findById(id).get();
-//        List<TransactionAccount> accList = new ArrayList<>();
-//        accList.add(transactionAccount);
-//        ArrayList<Customer> customerByTransactionAccount = customerRepository.findAllByTransactionAccountsContaining(accList);
-//        return customerByTransactionAccount.get(0);
-//    }
 
 
     //////////////////////////// CREATE //////////////////////////
