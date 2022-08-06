@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
-@Table //(name="transactionaccount", schema = "bank")
+@Table
 public class TransactionAccount {
 
     @Id
@@ -23,7 +23,6 @@ public class TransactionAccount {
 
     // "MANY accounts can belong to ONE customer"
     @ManyToOne
-    // @JoinColumn(name = "customer_id")
     private Customer customer;
 
     public TransactionAccount() {
@@ -35,7 +34,7 @@ public class TransactionAccount {
         this.balance = balance;
     }
 
-    // Constructor when both account number and customer/owner is set at start
+    // Constructor when customer/owner is set at start
     public TransactionAccount(String accountNo, double balance, Customer customer) {
         setAccountNo(accountNo);
         this.balance = balance;
