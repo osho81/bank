@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-// Part of "Model"; POJO
-
 @Entity // Hibernate related annotation (required to map this class to DB)
 @Table(name = "customer") // DB table same name as class, but lower case
 public class Customer {
