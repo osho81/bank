@@ -42,7 +42,7 @@ public class TransactionAccountService {
     }
 
     // Find accounts by passed in customer id,
-    // Use customer as argument in repo method for finding associated accounts
+    // Use customer as argument in repository method for finding associated accounts
     public List<TransactionAccount> getTransactionAccountsByCustomer(long id) {
         Customer customer = customerRepository.findById(id).get();
         ArrayList<TransactionAccount> transactionAccountsByCustomer = transactionAccountRepository.findAllByCustomer(customer);
