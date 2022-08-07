@@ -76,7 +76,9 @@ public class TransactionAccountService {
 
         Optional<TransactionAccount> foundByAccountNo = transactionAccountRepository
                 .findTransactionAccountByAccountNo(transactionAccount.getAccountNo());
-        if (foundByAccountNo.isPresent()) {
+        // Handle if used by another user (except if it is used by same user, then also OK)
+        if (foundByAccountNo.isPresent()
+                && !existingTransactionAccount.getAccountNo().equals(transactionAccount.getAccountNo())) {
             throw new IllegalStateException(transactionAccount.getAccountNo() + " is used by another user");
         } else if (transactionAccount.getAccountNo().isEmpty()) {
             throw new IllegalStateException("Account number field is empty");
@@ -100,7 +102,7 @@ public class TransactionAccountService {
             System.out.println("Sorry, something went wrong");
         }
 
-        if (transactionAccount.getCustomer() != null) {
+        if (transactionAccount.getCustomer() != null) { // On update, must also assign customer
             existingTransactionAccount.setCustomer(transactionAccount.getCustomer());
 
         } else {

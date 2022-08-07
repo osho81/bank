@@ -82,6 +82,8 @@ public class CustomerService {
         if (foundByEmail.isPresent()) {
             throw new IllegalStateException(customer.getEmail() + " is used by another user");
         } else if (customer.getEmail().isEmpty()) {
+
+            // Compulsory here fields is OK, since frontend passes in previous values when needed
             throw new IllegalStateException("Email field is empty");
         } else {
             existingCustomer.setEmail(customer.getEmail());
