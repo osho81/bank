@@ -75,7 +75,7 @@ public class CustomerService {
 
         // Check whether customer with given id exists in DB or not
         Customer existingCustomer = customerRepository.findById(id).get();
-        //OR .orElseThrow( () -> new IllegalStateException("No customer with id " + id));
+        //OR: .orElseThrow( () -> new IllegalStateException("No customer with id " + id));
 
         // Check if the email is already used by any user
         Optional<Customer> foundByEmail = customerRepository.findCustomerByEmail(customer.getEmail());
