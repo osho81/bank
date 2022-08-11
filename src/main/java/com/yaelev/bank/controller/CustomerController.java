@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// "Api layer"; controls endpoints, routing etc. REST API.
+// "Api layer"; controls endpoints, routing etc.
+// REST API.
 // (while service have more specific methods such as CRUD operations)
 
-// Solving frontend cors policy for api requests
+// Solving frontend cors-policy for api requests
 @CrossOrigin(origins = "http://localhost:3000") // points to react (spring port: 8080)
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
 @RequestMapping(path = "/api/v1/customer") // i.e. http://localhost:8080/api/v1/customer
@@ -23,8 +24,8 @@ public class CustomerController {
     private final CustomerRepository customerRepository;
 
     @Autowired
-    // "auto-instantiate" customerservice (skip the new-keyword)
-    // also need to add @Component or @Service in CustomerService class
+    // "auto-instantiate" customerservice (skip new-keyword)
+    // Add @Component or @Service in CustomerService class
     // These "auto-instantiating" annotations is type of "dependency injection".
     public CustomerController(CustomerService customerService, CustomerRepository customerRepository) {
         this.customerService = customerService;
