@@ -56,7 +56,7 @@ public class CustomerController {
 
     @DeleteMapping("/{id}") // http://localhost:3000/api/v1/customers/id
     public void deleteCustomer(@PathVariable long id) { // extracts id-part
-        customerService.deleteCustomer(id); // Operate on the extracted id
+        customerService.deleteCustomer(id); // Pass in the extracted id
     }
 
 }
