@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-// Note: using repos instead of services; for temporary development phase
+// Note: also using repos instead of services; for development phase
 
 
 @Configuration
@@ -25,8 +25,7 @@ public class MainConfig {
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository,
                                         TransactionAccountRepository transactionAccountRepository,
-                                        AppUserRepository appUserRepository,
-                                        RoleRepository roleRepository) {
+                                        AppUserRoleService appUserRoleService) {
         return args -> {
             Customer donald = new Customer(
                     "Donald",
@@ -57,8 +56,7 @@ public class MainConfig {
                     "minnie@gmail.com",
                     null
             );
-            customerRepository.saveAll(List.of(donald, mickey, minnie)
-            );
+            customerRepository.saveAll(List.of(donald, mickey, minnie));
 
             TransactionAccount transactionAccount1 = new TransactionAccount("741741789", 0, donald);
 
@@ -66,22 +64,27 @@ public class MainConfig {
 
             TransactionAccount transactionAccount3 = new TransactionAccount("123456789", 0, mickey);
 
-            transactionAccountRepository.saveAll(List.of(transactionAccount1, transactionAccount2, transactionAccount3)
-            );
+            transactionAccountRepository.saveAll(List.of(transactionAccount1, transactionAccount2, transactionAccount3));
 
-            // Create temporary users and roles (for the development phase)
+            // Create temporary users, roles and add roles to users
 
-            // Role role1 = new Role("ROLE_USER");
-            roleRepository.save(new Role("ROLE_USER"));
-            roleRepository.save(new Role("ROLE_EMPLOYEE"));
-            roleRepository.save(new Role("ROLE_ADMIN"));
-
-            // AppUser appUser1 = new AppUser("TestingUser1", "testingKing1", "123456");
-            appUserRepository.save(new AppUser("AppUser1", "user1", "123456"));
-            appUserRepository.save(new AppUser("AppUser2", "user2", "234567"));
-            appUserRepository.save(new AppUser("AppUser3", "user3", "345678"));
+            appUserRoleService.saveRole(new Role("ROLE_USER"));
+            appUserRoleService.saveRole(new Role("ROLE_EMPLOYEE"));
+            appUserRoleService.saveRole(new Role("ROLE_ADMIN"));
 
 
+//            AppUser AppUser1 = new AppUser("AppUser1", "user1", "123456");
+//            appUserRoleService.saveAppUser(AppUser1);
+            appUserRoleService.saveAppUser(new AppUser("AppUser1", "user1", "123456"));
+            appUserRoleService.saveAppUser(new AppUser("AppUser2", "user2", "234567"));
+            appUserRoleService.saveAppUser(new AppUser("AppUser3", "user3", "345678"));
+
+
+            appUserRoleService.addAppUserRole("user1", "ROLE_USER");
+            appUserRoleService.addAppUserRole("user1", "ROLE_ADMIN");
+            appUserRoleService.addAppUserRole("user2", "ROLE_USER");
+            appUserRoleService.addAppUserRole("user3", "ROLE_ADMIN");
+            appUserRoleService.addAppUserRole("user3", "ROLE_EMPLOYEE");
 
         };
     }

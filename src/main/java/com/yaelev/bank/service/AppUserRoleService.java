@@ -6,6 +6,7 @@ import com.yaelev.bank.repository.AppUserRepository;
 import com.yaelev.bank.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,6 +23,12 @@ public class AppUserRoleService {
 
     private AppUserRepository appUserRepository;
     private RoleRepository roleRepository;
+
+    @Autowired // Added this constructor; lombok/hibernate issue
+    public AppUserRoleService(AppUserRepository appUserRepository, RoleRepository roleRepository) {
+        this.appUserRepository = appUserRepository;
+        this.roleRepository = roleRepository;
+    }
 
     public AppUser saveAppUser(AppUser appUser) {
         log.info("Saving AppUser to DataBase"); // Add more details with placeholders later {}

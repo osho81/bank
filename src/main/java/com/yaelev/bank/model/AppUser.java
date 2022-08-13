@@ -26,7 +26,7 @@ public class AppUser {
     private String password;
 
     // @Singular
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY) // Add mappedBy="roleName" to avoid join-table
     private Collection<Role> roles; // = new ArrayList<>()
 
 
