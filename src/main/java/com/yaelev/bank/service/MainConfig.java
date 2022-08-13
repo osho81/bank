@@ -1,8 +1,12 @@
 package com.yaelev.bank.service;
 
+import com.yaelev.bank.model.AppUser;
 import com.yaelev.bank.model.Customer;
+import com.yaelev.bank.model.Role;
 import com.yaelev.bank.model.TransactionAccount;
+import com.yaelev.bank.repository.AppUserRepository;
 import com.yaelev.bank.repository.CustomerRepository;
+import com.yaelev.bank.repository.RoleRepository;
 import com.yaelev.bank.repository.TransactionAccountRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -17,7 +22,9 @@ public class MainConfig {
 
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository,
-                                        TransactionAccountRepository transactionAccountRepository) {
+                                        TransactionAccountRepository transactionAccountRepository,
+                                        AppUserRepository appUserRepository,
+                                        RoleRepository roleRepository) {
         return args -> {
             Customer donald = new Customer(
                     "Donald",
@@ -59,6 +66,12 @@ public class MainConfig {
 
             transactionAccountRepository.saveAll(List.of(transactionAccount1, transactionAccount2, transactionAccount3)
             );
+
+            // Create temporary users and roles (for the development phase)
+            // AppUser appUser1 = new AppUser("TestingUser1", "testingKing1", "123456");
+            appUserRepository.save(new AppUser("TestingUser1", "testingKing1", "123456"));
+            appUserRepository.save(new AppUser("TestingUser1", "testingKing1", "123456"));
+
         };
     }
 

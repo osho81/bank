@@ -1,8 +1,6 @@
 package com.yaelev.bank.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.Collection;
 @Data // Lombok getters/setters etc
 @NoArgsConstructor // Lombok constructors
 @AllArgsConstructor
-
+// @Builder(toBuilder = true)
 public class AppUser {
     @Id
     @SequenceGenerator(
@@ -27,7 +25,15 @@ public class AppUser {
     private String username;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    // @Singular
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Role> roles = new ArrayList<>();
 
+
+    // Customized constructor because of lombok/hibernate issue
+    public AppUser(String name, String username, String password) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+    }
 }
