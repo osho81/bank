@@ -27,7 +27,7 @@ public class AppUser {
 
     // @Singular
     @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Role> roles = new ArrayList<>();
+    private Collection<Role> roles; // = new ArrayList<>()
 
 
     // Customized constructor because of lombok/hibernate issue
@@ -35,5 +35,6 @@ public class AppUser {
         this.name = name;
         this.username = username;
         this.password = password;
+        this.roles = new ArrayList<>();
     }
 }

@@ -14,8 +14,10 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
+
+// Note: using repos instead of services; for temporary development phase
+
 
 @Configuration
 public class MainConfig {
@@ -68,9 +70,18 @@ public class MainConfig {
             );
 
             // Create temporary users and roles (for the development phase)
+
+            // Role role1 = new Role("ROLE_USER");
+            roleRepository.save(new Role("ROLE_USER"));
+            roleRepository.save(new Role("ROLE_EMPLOYEE"));
+            roleRepository.save(new Role("ROLE_ADMIN"));
+
             // AppUser appUser1 = new AppUser("TestingUser1", "testingKing1", "123456");
-            appUserRepository.save(new AppUser("TestingUser1", "testingKing1", "123456"));
-            appUserRepository.save(new AppUser("TestingUser1", "testingKing1", "123456"));
+            appUserRepository.save(new AppUser("AppUser1", "user1", "123456"));
+            appUserRepository.save(new AppUser("AppUser2", "user2", "234567"));
+            appUserRepository.save(new AppUser("AppUser3", "user3", "345678"));
+
+
 
         };
     }

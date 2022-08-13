@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 // Spring Security component
-// Service class for both users and roles
+// Service class for both User and Role classes
 
 @Service
 @Transactional
