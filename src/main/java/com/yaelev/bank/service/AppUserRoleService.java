@@ -35,6 +35,9 @@ public class AppUserRoleService {
 
     public void addAppUserRole(String username, String roleName) {
         log.info("Saving AppUser's role to DataBase");
+        AppUser user = appUserRepository.findAppUserByUsername(username);
+        Role role = roleRepository.findRoleByRoleName(roleName);
+
 
     }
 
