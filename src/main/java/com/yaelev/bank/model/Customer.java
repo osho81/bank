@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity // Hibernate related annotation (required to map this class to DB)
-@Table(name = "customer") // DB table same name as class, but lower case
+@Table // (name = "customer") // DB table same name as class, but lower case
 public class Customer {
 
     // Sequence approach for mysql (instead of e.g. GenerationType.IDENTITY):
