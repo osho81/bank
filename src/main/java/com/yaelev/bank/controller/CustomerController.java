@@ -37,6 +37,10 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
+    // Try this later, instead of above method; (here and/or CustomerService):
+    // public ResponseEntity<List<Customer>> getCustomers() {
+    // return ResponseEntity.ok().body(customerService.getCustomers()) }
+
     @GetMapping("/{id}") // http://localhost:3000/api/v1/customers/id-argument
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
         return customerService.getCustomerById(id); // Extract id from path

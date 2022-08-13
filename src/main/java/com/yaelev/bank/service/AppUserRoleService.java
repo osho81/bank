@@ -37,8 +37,8 @@ public class AppUserRoleService {
         log.info("Saving AppUser's role to DataBase");
         AppUser user = appUserRepository.findAppUserByUsername(username);
         Role role = roleRepository.findRoleByRoleName(roleName);
-
-
+        // Get user's roles-list, and add this role:
+        user.getRoles().add(role);
     }
 
     public AppUser getAppUser(String username) {
