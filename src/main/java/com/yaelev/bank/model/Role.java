@@ -21,5 +21,5 @@ public class Role {
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_sequence")
     private long id;
-    private String name;
+    private String roleName;
 }
