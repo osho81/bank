@@ -19,7 +19,7 @@ public class MainConfig {
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository,
                                         TransactionAccountRepository transactionAccountRepository) {
         return args -> {
-            Customer donald = new Customer( // Skip id, since it is auto-generated
+            Customer donald = new Customer(
                     "Donald",
                     "Duck",
                     LocalDate.of(1990, Month.MAY, 5),
