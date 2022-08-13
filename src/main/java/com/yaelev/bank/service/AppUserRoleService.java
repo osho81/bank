@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 // Spring Security component
 // Service class for both users and roles
@@ -23,21 +24,29 @@ public class AppUserRoleService {
     private RoleRepository roleRepository;
 
     public AppUser saveAppUser(AppUser appUser) {
+        log.info("Saving AppUser to DataBase"); // Add more details with placeholders later {}
         return appUserRepository.save(appUser);
     }
 
     public Role saveRole(Role role) {
+        log.info("Saving Role to DataBase");
         return roleRepository.save(role);
     }
 
     public void addAppUserRole(String username, String roleName) {
+        log.info("Saving AppUser's role to DataBase");
 
     }
 
     public AppUser getAppUser(String username) {
+        log.info("Retrieving AppUser from DataBase");
         return appUserRepository.findAppUserByUsername(username);
     }
 
+    public List<AppUser> getAppUsers() {
+        log.info("Retrieving AppUsers from DataBase");
+        return appUserRepository.findAll();
+    }
 
 
 }
