@@ -57,7 +57,8 @@ public class AppUserRoleService implements UserDetailsService {
     }
 
     public AppUser saveAppUser(AppUser appUser) {
-        log.info("Saving AppUser to DataBase"); // Add more details with placeholders later {}
+        log.info("Saving AppUser to DataBase"); // Add more details with placeholders {} later
+        appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
         return appUserRepository.save(appUser);
     }
 
