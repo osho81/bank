@@ -56,6 +56,16 @@ public class AppUserRoleService implements UserDetailsService {
         return new User(appUser.getUsername(), appUser.getPassword(), authorities);
     }
 
+    public AppUser getAppUser(String username) {
+        log.info("Retrieving AppUser from DataBase");
+        return appUserRepository.findAppUserByUsername(username);
+    }
+
+    public List<AppUser> getAppUsers() {
+        log.info("Retrieving AppUsers from DataBase");
+        return appUserRepository.findAll();
+    }
+
     public AppUser saveAppUser(AppUser appUser) {
         log.info("Saving AppUser to DataBase"); // Add more details with placeholders {} later
         appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
@@ -73,16 +83,6 @@ public class AppUserRoleService implements UserDetailsService {
         Role role = roleRepository.findRoleByRoleName(roleName);
         // Get user's roles-list, and add this role:
         user.getRoles().add(role);
-    }
-
-    public AppUser getAppUser(String username) {
-        log.info("Retrieving AppUser from DataBase");
-        return appUserRepository.findAppUserByUsername(username);
-    }
-
-    public List<AppUser> getAppUsers() {
-        log.info("Retrieving AppUsers from DataBase");
-        return appUserRepository.findAll();
     }
 
 }

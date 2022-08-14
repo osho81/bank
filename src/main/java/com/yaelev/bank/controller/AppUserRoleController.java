@@ -8,10 +8,7 @@ import com.yaelev.bank.repository.RoleRepository;
 import com.yaelev.bank.service.AppUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,14 +30,14 @@ public class AppUserRoleController {
         this.roleRepository = roleRepository;
     }
 
-    @GetMapping("/all") // http://localhost:8080/api/v1/customers
+    @GetMapping("/all") // http://localhost:8080/api/v1/user/all
     public ResponseEntity<List<AppUser>> getAppUsers() {
         return ResponseEntity.ok().body(appUserRoleService.getAppUsers());
     }
 
-    @GetMapping("/{id}") // http://localhost:8080/api/v1/customers
-    public ResponseEntity<List<AppUser>> getAppUsers() {
-        return ResponseEntity.ok().body(appUserRoleService.getAppUsers());
+    @GetMapping("/{username}") // http://localhost:8080/api/v1/user/username-arg
+    public ResponseEntity<AppUser> getAppUser(@PathVariable String username) {
+        return ResponseEntity.ok().body(appUserRoleService.getAppUser(username));
     }
 
 
