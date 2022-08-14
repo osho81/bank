@@ -40,5 +40,17 @@ public class AppUserRoleController {
         return ResponseEntity.ok().body(appUserRoleService.getAppUser(username));
     }
 
+    @PostMapping
+    public void registerNewAppUser(@RequestBody AppUser appUser) {
+        appUserRoleService.saveAppUser(appUser);
+    }
+
+    // TODO: Update/PUT mapping/method for AppUser
+
+    @DeleteMapping("/{username}")
+    public void deleteAppUser(@PathVariable String username) {
+        appUserRoleService.deleteByUsername(username);
+    }
+
 
 }

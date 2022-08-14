@@ -126,7 +126,6 @@ public class CustomerService {
     //////////////////////////// DELETE //////////////////////////
 
     public void deleteCustomer(long id) {
-
         Customer disassociatedCustomer = disassociateAccounts(id);
         customerRepository.deleteById(disassociatedCustomer.getId());
     }

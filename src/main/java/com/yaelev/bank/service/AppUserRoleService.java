@@ -40,7 +40,7 @@ public class AppUserRoleService implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @Override // Implements UserDetails & this method is part of SecurityConfig
+    @Override // Implement UserDetails & this method is part of SecurityConfig
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = appUserRepository.findAppUserByUsername(username);
         if (appUser == null) {
@@ -84,5 +84,11 @@ public class AppUserRoleService implements UserDetailsService {
         // Get user's roles-list, and add this role:
         user.getRoles().add(role);
     }
+
+    public void deleteByUsername(String username) {
+        long appUserId = appUserRepository.findAppUserByUsername(username).getId();
+        appUserRepository.deleteById(appUserId);
+    }
+
 
 }
