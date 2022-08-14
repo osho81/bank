@@ -46,7 +46,7 @@ public class SecurityConfig {
 //                .permitAll();
         // http.addFilter(new AuthenticationFilter(authenticationManagerBean()));
 
-        http.apply(customDsl());
+        // http.apply(customDsl());
 
         return http.build(); // Build line added in v 5.7.+ approach
     }
