@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,11 +31,13 @@ public class AppUserRoleService implements UserDetailsService {
 
     private AppUserRepository appUserRepository;
     private RoleRepository roleRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder; // Use in get/save methods hereunder
 
     @Autowired // Added this constructor; lombok/hibernate issue
-    public AppUserRoleService(AppUserRepository appUserRepository, RoleRepository roleRepository) {
+    public AppUserRoleService(AppUserRepository appUserRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.appUserRepository = appUserRepository;
         this.roleRepository = roleRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override // Implements UserDetails & this method is part of SecurityConfig
