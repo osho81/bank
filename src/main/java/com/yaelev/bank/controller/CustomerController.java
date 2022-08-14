@@ -32,15 +32,12 @@ public class CustomerController {
         this.customerRepository = customerRepository;
     }
 
-    @GetMapping("/all") // http://localhost:3000/api/v1/customers
+    @GetMapping("/all") // http://localhost:8080/api/v1/customer/all
     public ResponseEntity<List<Customer>> getCustomers() {
         return ResponseEntity.ok().body(customerService.getCustomers());
     }
-//        public List<Customer> getCustomers() {
-//        return customerService.getCustomers();
-//    }
 
-    @GetMapping("/{id}") // http://localhost:3000/api/v1/customers/id-argument
+    @GetMapping("/{id}") // http://localhost:8080/api/v1/customer/id-arg
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
         return customerService.getCustomerById(id); // Extract id from path
     }
@@ -50,14 +47,14 @@ public class CustomerController {
         customerService.registerNewCustomer(customer);
     }
 
-    @PutMapping(path = "/{id}")
+    @PutMapping(path = "/{id}") // http://localhost:8080/api/v1/customer/id-arg
     public void updateProduct(@PathVariable("id") long id, @RequestBody Customer customer) {
         System.out.println("hello");
         System.out.println(id);
         customerService.updateCustomer(id, customer);
     }
 
-    @DeleteMapping("/{id}") // http://localhost:3000/api/v1/customers/id
+    @DeleteMapping("/{id}") // http://localhost:8080/api/v1/customer/id-arg
     public void deleteCustomer(@PathVariable long id) { // extracts id-part
         customerService.deleteCustomer(id); // Pass in the extracted id
     }

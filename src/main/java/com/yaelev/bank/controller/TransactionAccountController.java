@@ -23,8 +23,8 @@ public class TransactionAccountController {
     }
 
     @GetMapping("/all")
-    public List<TransactionAccount> getTransactionAccounts() {
-        return transactionAccountService.getTransactionAccounts();
+    public ResponseEntity<List<TransactionAccount>> getTransactionAccounts() {
+        return ResponseEntity.ok().body(transactionAccountService.getTransactionAccounts());
     }
 
     @GetMapping("/{id}")
