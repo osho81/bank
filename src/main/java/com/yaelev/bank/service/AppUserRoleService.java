@@ -7,9 +7,16 @@ import com.yaelev.bank.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 // Spring Security component
@@ -19,7 +26,7 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor // Lombok, constructor with required para types
 @Slf4j // Lombok logger
-public class AppUserRoleService {
+public class AppUserRoleService implements UserDetailsService {
 
     private AppUserRepository appUserRepository;
     private RoleRepository roleRepository;
@@ -28,6 +35,22 @@ public class AppUserRoleService {
     public AppUserRoleService(AppUserRepository appUserRepository, RoleRepository roleRepository) {
         this.appUserRepository = appUserRepository;
         this.roleRepository = roleRepository;
+    }
+
+    @Override // Implements UserDetails & this method is part of SecurityConfig
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        AppUser appUser = appUserRepository.findAppUserByUsername(username);
+        if (appUser == null) {
+            log.error("User not found");
+            throw new UsernameNotFoundException("User not found");
+        } else {
+            log.info("User found");
+        }
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        appUser.getRoles().forEach(role -> {
+            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        });
+        return new User(appUser.getUsername(), appUser.getPassword(), authorities);
     }
 
     public AppUser saveAppUser(AppUser appUser) {
@@ -57,6 +80,5 @@ public class AppUserRoleService {
         log.info("Retrieving AppUsers from DataBase");
         return appUserRepository.findAll();
     }
-
 
 }

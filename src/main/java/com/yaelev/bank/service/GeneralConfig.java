@@ -4,13 +4,13 @@ import com.yaelev.bank.model.AppUser;
 import com.yaelev.bank.model.Customer;
 import com.yaelev.bank.model.Role;
 import com.yaelev.bank.model.TransactionAccount;
-import com.yaelev.bank.repository.AppUserRepository;
 import com.yaelev.bank.repository.CustomerRepository;
-import com.yaelev.bank.repository.RoleRepository;
 import com.yaelev.bank.repository.TransactionAccountRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -20,7 +20,13 @@ import java.util.List;
 
 
 @Configuration
-public class MainConfig {
+public class GeneralConfig {
+
+
+    @Bean // Used in SecurityConfig
+    BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository,
@@ -87,6 +93,8 @@ public class MainConfig {
             appUserRoleService.addAppUserRole("user3", "ROLE_EMPLOYEE");
 
         };
+
+
     }
 
 }
