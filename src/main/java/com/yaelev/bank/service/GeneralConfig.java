@@ -22,12 +22,6 @@ import java.util.List;
 @Configuration
 public class GeneralConfig {
 
-
-    @Bean // Used in SecurityConfig
-    BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository,
                                         TransactionAccountRepository transactionAccountRepository,
