@@ -20,16 +20,19 @@ public class SecurityConfig {
         http
                 .httpBasic()
                 .and()
+                // Customize specific paths' security requirements
                 .authorizeHttpRequests()
-//                .antMatchers(HttpMethod.GET, "/t-account/**").permitAll() // Anyone can GET
-//                .antMatchers(HttpMethod.POST, "/etc...").hasRole("USER")
-                .antMatchers(HttpMethod.POST, "/**").hasRole("ROLE_ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/someOtherPath/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+//                .antMatchers(HttpMethod.GET, "/customer/**").permitAll() // Anyone can GET
+//                .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("USER")
+//                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Restrict certain path
+                .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // Restrict certain path
+//                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
+                .anyRequest().authenticated() // Must be logged in for any request
                 .and()
+                // Specify further behaviours
                 .logout().invalidateHttpSession(true)
                 .and()
-                .csrf().disable();
+                .csrf().disable(); // Disable cross-site request forgery
         return http.build();
     }
 
