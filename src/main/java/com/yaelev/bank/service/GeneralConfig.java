@@ -66,19 +66,15 @@ public class GeneralConfig {
 
             transactionAccountRepository.saveAll(List.of(transactionAccount1, transactionAccount2, transactionAccount3));
 
-            // Create temporary users, roles and add roles to users
 
+            // Create temporary users, roles and add roles to users
             appUserRoleService.saveRole(new Role("ROLE_USER"));
             appUserRoleService.saveRole(new Role("ROLE_EMPLOYEE"));
             appUserRoleService.saveRole(new Role("ROLE_ADMIN"));
 
-
-//            AppUser AppUser1 = new AppUser("AppUser1", "user1", "123456");
-//            appUserRoleService.saveAppUser(AppUser1);
             appUserRoleService.saveAppUser(new AppUser("AppUser1", "user1", "123456"));
             appUserRoleService.saveAppUser(new AppUser("AppUser2", "user2", "234567"));
             appUserRoleService.saveAppUser(new AppUser("AppUser3", "user3", "345678"));
-
 
             appUserRoleService.addAppUserRole("user1", "ROLE_USER");
             appUserRoleService.addAppUserRole("user1", "ROLE_ADMIN");
