@@ -20,18 +20,26 @@ public class SecurityConfig {
         http
                 .httpBasic()
                 .and()
-                // Customize specific paths' security requirements
+
+                // Customize specific paths' security requirements;
+                // See loaded user authorities in AppUserRoleService class
                 .authorizeHttpRequests()
 //                .antMatchers(HttpMethod.GET, "/customer/**").permitAll() // Anyone can GET
-//                .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("USER")
+                .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("EMPLOYEE")
 //                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Restrict certain path
-                .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // Restrict certain path
+                .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // (ROLE_ is appended)
 //                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
                 .anyRequest().authenticated() // Must be logged in for any request
-                .and()
+                .and() //Login Form configuration for all others
+
+//                .formLogin()
+//                .loginPage("/login").permitAll() // Render webpage for this path as login
+//                .and()
+
                 // Specify further behaviours
                 .logout().invalidateHttpSession(true)
                 .and()
+
                 .csrf().disable(); // Disable cross-site request forgery
         return http.build();
     }
