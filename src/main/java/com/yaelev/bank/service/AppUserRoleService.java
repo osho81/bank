@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +39,7 @@ public class AppUserRoleService implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @Override // Implement UserDetails & this method is part of SecurityConfig
+    @Override // Implementing UserDetailsService & this method is part of Security setup
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = appUserRepository.findAppUserByUsername(username);
         if (appUser == null) {
@@ -49,12 +48,16 @@ public class AppUserRoleService implements UserDetailsService {
         } else {
             log.info("User found");
         }
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        Collection<SimpleGrantedAuthority> userAuthorities = new ArrayList<>();
         appUser.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+            userAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
-        return new User(appUser.getUsername(), appUser.getPassword(), authorities);
+        return new User(appUser.getUsername(), appUser.getPassword(), userAuthorities);
     }
+
+
+
+    /////////////////// Crud API for AppUser //////////////////////
 
     public AppUser getAppUser(String username) {
         log.info("Retrieving AppUser from DataBase");
