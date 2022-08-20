@@ -29,7 +29,7 @@ public class SecurityConfig {
                 // Customize specific paths' security requirements;
                 // See loaded user authorities in AppUserRoleService class
                 .authorizeHttpRequests()
-                .antMatchers("api/vi/login*").permitAll()
+                .antMatchers("api/v*/login*").permitAll()
 //                .antMatchers(HttpMethod.GET, "/customer/**").permitAll() // Anyone can GET
                 .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("EMPLOYEE")
 //                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Restrict certain path
@@ -49,17 +49,7 @@ public class SecurityConfig {
                 .csrf().disable() // Disable cross-site request forgery
 
                 // Example spring security default login form procedure
-                .formLogin()
-                .loginPage("/api/v1/login")
-                .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/api/v1/customer/all", true);
-//                .failureUrl("/login.html?error=true")
-//                 .failureHandler(authenticationFailureHandler())
-//                .and()
-//                .logout()
-//                .logoutUrl("/????");
-//                .deleteCookies("JSESSIONID")
-//                .logoutSuccessHandler(logoutSuccessHandler());
+                .formLogin();
 
         return http.build();
     }
