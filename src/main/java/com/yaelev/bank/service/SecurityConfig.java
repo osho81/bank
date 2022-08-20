@@ -15,7 +15,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean // Customize login, authentication procedures etc
+
+    // Define authentication type (in memory, authenticationManager etc)
+
+
+    // Define security: Customize login, path authorization, exceptions etc
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .httpBasic()
@@ -41,6 +46,9 @@ public class SecurityConfig {
                 .and()
 
                 .csrf().disable(); // Disable cross-site request forgery
+
+                //.formLogin();
+
         return http.build();
     }
 
