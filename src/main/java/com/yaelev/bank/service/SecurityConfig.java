@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .csrf().disable() // Disable cross-site request forgery
 
                 // Example spring security default login form procedure
-                .formLogin();
+                .formLogin(); //http://localhost:8080/login
 
         return http.build();
     }
