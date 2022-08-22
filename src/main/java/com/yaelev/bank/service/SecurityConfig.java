@@ -25,31 +25,25 @@ public class SecurityConfig {
         http
                 .httpBasic()
                 .and()
+                .csrf().disable() // Disable cross-site request forgery
 
                 // Customize specific paths' security requirements;
                 // See loaded user authorities in AppUserRoleService class
                 .authorizeHttpRequests()
-                .antMatchers("api/v*/login*").permitAll()
-//                .antMatchers(HttpMethod.GET, "/customer/**").permitAll() // Anyone can GET
+//                .antMatchers(HttpMethod.GET, "/customer/**").permitAll() // Anyone can GET customers
                 .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("EMPLOYEE")
 //                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Restrict certain path
                 .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // (ROLE_ is appended)
 //                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
                 .anyRequest().authenticated() // Must be logged in for any request
-                .and() //Login Form configuration for all others
-
-//                .formLogin()
-//                .loginPage("/login").permitAll() // Render webpage for this path as login
-//                .and()
-
-                // Specify further behaviours
-                .logout().invalidateHttpSession(true)
                 .and()
 
-                .csrf().disable() // Disable cross-site request forgery
-
                 // Example spring security default login form procedure
-                .formLogin(); // (redirects to/starts at:) http://localhost:8080/login
+                .formLogin() // (redirects to/starts at:) http://localhost:8080/login
+                .loginPage("/login").permitAll()
+                .and()
+
+                .logout().invalidateHttpSession(true);
 
         return http.build();
     }
