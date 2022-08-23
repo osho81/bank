@@ -25,25 +25,30 @@ public class SecurityConfig {
         http
                 .httpBasic()
                 .and()
+
                 .csrf().disable() // Disable cross-site request forgery
 
                 // Customize specific paths' security requirements;
                 // See loaded user authorities in AppUserRoleService class
                 .authorizeHttpRequests()
+
+
+
 //                .antMatchers(HttpMethod.GET, "/customer/**").permitAll() // Anyone can GET customers
                 .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("EMPLOYEE")
 //                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Restrict certain path
                 .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // (ROLE_ is appended)
 //                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
+
                 .anyRequest().authenticated() // Must be logged in for any request
                 .and()
 
                 // Example spring security default login form procedure
-                .formLogin() // (redirects to/starts at:) http://localhost:8080/login
-                .loginPage("/login").permitAll()
+                .formLogin().permitAll() // (redirects to/starts at:) http://localhost:8080/login
+                //.loginPage("/api/v1/someCustomePage").permitAll() // Eventual custom login page
                 .and()
 
-                .logout().invalidateHttpSession(true);
+                .logout().invalidateHttpSession(false);
 
         return http.build();
     }
