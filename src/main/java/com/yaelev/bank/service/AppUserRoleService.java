@@ -54,7 +54,7 @@ public class AppUserRoleService implements UserDetailsService {
         appUser.getRoles().forEach(role -> {
             userAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
-        // Return eventual AppUser/passwor+roles/authorities, as current logged in User
+        // Return eventual AppUser/password+roles/authorities, as current logged in User
         return new User(appUser.getUsername(), appUser.getPassword(), userAuthorities);
     }
 
