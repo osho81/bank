@@ -49,10 +49,12 @@ public class AppUserRoleService implements UserDetailsService {
             log.info("User found");
         }
         // Authorities based on db-roles for user; to be used in authentication process
+        // Each role for the loaded user, gets its authority
         Collection<SimpleGrantedAuthority> userAuthorities = new ArrayList<>();
         appUser.getRoles().forEach(role -> {
             userAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
+        // Return eventual AppUser/passwor+roles/authorities, as current logged in User
         return new User(appUser.getUsername(), appUser.getPassword(), userAuthorities);
     }
 

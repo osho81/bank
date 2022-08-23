@@ -28,27 +28,36 @@ public class SecurityConfig {
 
                 .csrf().disable() // Disable cross-site request forgery
 
-                // Customize specific paths' security requirements;
-                // See loaded user authorities in AppUserRoleService class
+                // Restrict certain path for certain users
+                // See loaded user roles/uthorities in AppUserRoleService class
                 .authorizeHttpRequests()
+              //  .antMatchers().ha
 
-
+                .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // (ROLE_ is appended)
+//                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Alternative
+//                .antMatchers("/api/v*/t-account/**").hasAnyRole("ADMIN", "USER") // Multiple
 
 //                .antMatchers(HttpMethod.GET, "/customer/**").permitAll() // Anyone can GET customers
-                .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("EMPLOYEE")
-//                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Restrict certain path
-                .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // (ROLE_ is appended)
+//                .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("EMPLOYEE")
+//                .antMatchers(HttpMethod.PUT, "/api/v*/**").hasRole("EMPLOYEE")
 //                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
 
-                .anyRequest().authenticated() // Must be logged in for any request
+                .anyRequest().authenticated() // User must be logged in for any request
                 .and()
 
-                // Example spring security default login form procedure
-                .formLogin().permitAll() // (redirects to/starts at:) http://localhost:8080/login
-                //.loginPage("/api/v1/someCustomePage").permitAll() // Eventual custom login page
+                // Default spring login page; redirects to/starts at http://localhost:8080/login
+                .formLogin().permitAll()
+                //.loginPage("/api/v1/someCustomedPage").permitAll() // Eventual custom login page
+                .defaultSuccessUrl("/api/v1/customer/all", true) // Where to start after login
                 .and()
 
-                .logout().invalidateHttpSession(false);
+                // Default spring logout; logs out by redirecting to http://localhost:8080/logout
+                .logout()
+//                .logoutUrl("/perform_logout") // Eventual custom logout page
+
+                // Invalidate sessions and eventual cookies
+                .invalidateHttpSession(true);
+//                .deleteCookies("JSESSIONID")
 
         return http.build();
     }
