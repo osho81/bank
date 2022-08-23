@@ -49,7 +49,7 @@ public class AppUserRoleService implements UserDetailsService {
             log.info("User found");
         }
         // Authorities based on db-roles for user; to be used in authentication process
-        // Each role for the loaded user, gets its authority
+        // Each role for the loaded user gets its authority
         Collection<SimpleGrantedAuthority> userAuthorities = new ArrayList<>();
         appUser.getRoles().forEach(role -> {
             userAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
@@ -63,7 +63,7 @@ public class AppUserRoleService implements UserDetailsService {
     /////////////////// Crud API for AppUser //////////////////////
 
     public AppUser getAppUser(String username) {
-        log.info("Retrieving AppUser from DataBase");
+        log.info("Retrieving AppUser from DataBase"); // Add more details with placeholders {} later
         return appUserRepository.findAppUserByUsername(username);
     }
 
@@ -73,7 +73,7 @@ public class AppUserRoleService implements UserDetailsService {
     }
 
     public AppUser saveAppUser(AppUser appUser) {
-        log.info("Saving AppUser to DataBase"); // Add more details with placeholders {} later
+        log.info("Saving AppUser to DataBase");
         appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
         return appUserRepository.save(appUser);
     }

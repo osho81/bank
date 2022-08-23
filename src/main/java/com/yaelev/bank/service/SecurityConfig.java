@@ -31,13 +31,12 @@ public class SecurityConfig {
                 // Restrict certain path for certain users
                 // See loaded user roles/uthorities in AppUserRoleService class
                 .authorizeHttpRequests()
-              //  .antMatchers().ha
 
                 .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // (ROLE_ is appended)
 //                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Alternative
 //                .antMatchers("/api/v*/t-account/**").hasAnyRole("ADMIN", "USER") // Multiple
 
-//                .antMatchers(HttpMethod.GET, "/customer/**").permitAll() // Anyone can GET customers
+                .antMatchers(HttpMethod.GET, "/**").permitAll() // Anyone can GET anything
 //                .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("EMPLOYEE")
 //                .antMatchers(HttpMethod.PUT, "/api/v*/**").hasRole("EMPLOYEE")
 //                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
@@ -48,7 +47,7 @@ public class SecurityConfig {
                 // Default spring login page; redirects to/starts at http://localhost:8080/login
                 .formLogin().permitAll()
                 //.loginPage("/api/v1/someCustomedPage").permitAll() // Eventual custom login page
-                .defaultSuccessUrl("/api/v1/customer/all", true) // Where to start after login
+                .defaultSuccessUrl("http://localhost:3000/", true) // After login, start at React
                 .and()
 
                 // Default spring logout; logs out by redirecting to http://localhost:8080/logout
