@@ -41,6 +41,27 @@ public class AppUserRoleService implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+//    @Override // Implementing UserDetailsService & this method is part of Security setup
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        AppUser appUser = appUserRepository.findAppUserByUsername(username);
+//        if (appUser == null) {
+//            log.error("User not found");
+//            throw new UsernameNotFoundException("User not found");
+//        } else {
+//            log.info("User found");
+//        }
+//        // Authorities based on db-roles for user; to be used in authentication process
+//        // Each role for the loaded user gets its authority
+//        Collection<SimpleGrantedAuthority> userAuthorities = new ArrayList<>();
+//        appUser.getRoles().forEach(role -> {
+//            userAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+//        });
+//        // Return eventual AppUser/password+roles/authorities, as current logged in User
+//        return new User(appUser.getUsername(), appUser.getPassword(), userAuthorities);
+//    }
+
+
+    // Using merely customer table as users
     @Override // Implementing UserDetailsService & this method is part of Security setup
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = appUserRepository.findAppUserByUsername(username);
@@ -56,9 +77,11 @@ public class AppUserRoleService implements UserDetailsService {
         appUser.getRoles().forEach(role -> {
             userAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
+
         // Return eventual AppUser/password+roles/authorities, as current logged in User
         return new User(appUser.getUsername(), appUser.getPassword(), userAuthorities);
     }
+
 
 
     public Object getCurrentUser(Authentication authentication) {
