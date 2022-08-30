@@ -13,7 +13,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> { // O
 
     // Customized operations and queries
 
-    // Optional<Customer> findCustomerByEmail(String email);
+    // Needed both Optional and non optional type of find by email
+    Optional<Customer> findByEmail(String email);
+
     Customer findCustomerByEmail(String email);
 
     // Compare e.g.:

@@ -22,7 +22,10 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appuser_sequence")
     private long id;
     // private String name;
-    private String username;
+    // private String username;
+
+    private String email;
+
     private String password;
 
     // @Singular
@@ -31,9 +34,9 @@ public class AppUser {
 
 
     // Customized constructor because of lombok/hibernate issue
-    public AppUser(String username, String password) {
+    public AppUser(String email, String password) {
         // this.name = name;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.roles = new ArrayList<>();
     }

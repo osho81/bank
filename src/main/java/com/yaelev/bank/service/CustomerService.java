@@ -58,7 +58,7 @@ public class CustomerService {
     //////////////////////////// CREATE //////////////////////////
 
     public void registerNewCustomer(Customer customer) {
-        Optional<Customer> foundByEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+        Optional<Customer> foundByEmail = customerRepository.findByEmail(customer.getEmail());
         if (foundByEmail.isPresent()) { // If returned container is not empty...
             throw new IllegalStateException(customer.getEmail() + " is used by another user");
         } else {
@@ -78,7 +78,7 @@ public class CustomerService {
         //OR: .orElseThrow( () -> new IllegalStateException("No customer with id " + id));
 
         // Check if the email is already used by any user
-        Optional<Customer> foundByEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+        Optional<Customer> foundByEmail = customerRepository.findByEmail(customer.getEmail());
         if (foundByEmail.isPresent()) {
             throw new IllegalStateException(customer.getEmail() + " is used by another user");
         } else if (customer.getEmail().isEmpty()) {

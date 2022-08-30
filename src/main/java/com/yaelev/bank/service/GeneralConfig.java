@@ -33,7 +33,7 @@ public class GeneralConfig {
                     LocalDate.of(1990, Month.MAY, 5),
                     "900505-7376",
                     "Second street 1",
-                    "donaldduck@gmail.com",
+                    "dduck@gmail.com",
                     null
             );
 
@@ -72,15 +72,27 @@ public class GeneralConfig {
             appUserRoleService.saveRole(new Role("ROLE_EMPLOYEE"));
             appUserRoleService.saveRole(new Role("ROLE_ADMIN"));
 
-            appUserRoleService.saveAppUser(new AppUser("user1", "123456"));
-            appUserRoleService.saveAppUser(new AppUser("user2", "234567"));
-            appUserRoleService.saveAppUser(new AppUser("user3", "345678"));
+//            appUserRoleService.saveAppUser(new AppUser("user1", "123456"));
+//            appUserRoleService.saveAppUser(new AppUser("user2", "234567"));
+//            appUserRoleService.saveAppUser(new AppUser("user3", "345678"));
+//
+//            appUserRoleService.addAppUserRole("user1", "ROLE_USER");
+//            appUserRoleService.addAppUserRole("user1", "ROLE_ADMIN");
+//            appUserRoleService.addAppUserRole("user2", "ROLE_USER");
+//            appUserRoleService.addAppUserRole("user3", "ROLE_ADMIN");
+//            appUserRoleService.addAppUserRole("user3", "ROLE_EMPLOYEE");
 
-            appUserRoleService.addAppUserRole("user1", "ROLE_USER");
-            appUserRoleService.addAppUserRole("user1", "ROLE_ADMIN");
-            appUserRoleService.addAppUserRole("user2", "ROLE_USER");
-            appUserRoleService.addAppUserRole("user3", "ROLE_ADMIN");
-            appUserRoleService.addAppUserRole("user3", "ROLE_EMPLOYEE");
+
+            // Version after connecting Customer table to AppUser table via email
+            appUserRoleService.saveAppUser(new AppUser("dduck@gmail.com", "123456"));
+            appUserRoleService.saveAppUser(new AppUser("mickey@gmail.com", "234567"));
+            appUserRoleService.saveAppUser(new AppUser("minnie@gmail.com", "345678"));
+
+            appUserRoleService.addAppUserRole("dduck@gmail.com", "ROLE_USER");
+            appUserRoleService.addAppUserRole("dduck@gmail.com", "ROLE_ADMIN");
+            appUserRoleService.addAppUserRole("mickey@gmail.com", "ROLE_USER");
+            appUserRoleService.addAppUserRole("minnie@gmail.com", "ROLE_ADMIN");
+            appUserRoleService.addAppUserRole("minnie@gmail.com", "ROLE_EMPLOYEE");
 
         };
 

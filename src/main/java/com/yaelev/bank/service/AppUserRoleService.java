@@ -22,6 +22,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 // Spring Security component
 // Service class for both User and Role classes
@@ -73,8 +74,9 @@ public class AppUserRoleService implements UserDetailsService {
     // Using merely customer table as users
     @Override // Implementing UserDetailsService & this method is part of Security setup
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        // Optional<Customer> customer = customerRepository.findByEmail(email);
         Customer customer = customerRepository.findCustomerByEmail(email);
-        AppUser appUser = appUserRepository.findAppUserByUserEmail(customer.getEmail());
+        AppUser appUser = appUserRepository.findAppUserByEmail(customer.getEmail());
         if (appUser == null) {
             log.error("User not found");
             throw new UsernameNotFoundException("User not found");
@@ -89,7 +91,7 @@ public class AppUserRoleService implements UserDetailsService {
         });
 
         // Return eventual AppUser/password+roles/authorities, as current logged in User
-        return new User(appUser.getUsername(), appUser.getPassword(), userAuthorities);
+        return new User(appUser.getEmail(), appUser.getPassword(), userAuthorities);
     }
 
 
@@ -102,9 +104,10 @@ public class AppUserRoleService implements UserDetailsService {
 
     /////////////////// Crud API for AppUser //////////////////////
 
-    public AppUser getAppUser(String username) {
+    public AppUser getAppUser(String email) {
         log.info("Retrieving AppUser from DataBase"); // Add more details with placeholders {} later
-        return appUserRepository.findAppUserByUsername(username);
+        // return appUserRepository.findAppUserByUsername(username);
+        return appUserRepository.findAppUserByEmail(email);
     }
 
     public List<AppUser> getAppUsers() {
@@ -123,16 +126,18 @@ public class AppUserRoleService implements UserDetailsService {
         return roleRepository.save(role);
     }
 
-    public void addAppUserRole(String username, String roleName) {
+    public void addAppUserRole(String email, String roleName) {
         log.info("Saving AppUser's role to DataBase");
-        AppUser user = appUserRepository.findAppUserByUsername(username);
+        // AppUser user = appUserRepository.findAppUserByUsername(username);
+        AppUser user = appUserRepository.findAppUserByEmail(email);
         Role role = roleRepository.findRoleByRoleName(roleName);
         // Get user's roles-list, and add this role:
         user.getRoles().add(role);
     }
 
-    public void deleteByUsername(String username) {
-        long appUserId = appUserRepository.findAppUserByUsername(username).getId();
+    public void deleteByUsername(String email) {
+        // long appUserId = appUserRepository.findAppUserByUsername(username).getId();
+        long appUserId = appUserRepository.findAppUserByEmail(email).getId();
         appUserRepository.deleteById(appUserId);
     }
 
