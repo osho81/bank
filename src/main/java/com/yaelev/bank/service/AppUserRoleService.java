@@ -7,6 +7,7 @@ import com.yaelev.bank.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -59,6 +61,11 @@ public class AppUserRoleService implements UserDetailsService {
     }
 
 
+    public Object getCurrentUser(Authentication authentication) {
+        return authentication;
+    }
+
+
 
     /////////////////// Crud API for AppUser //////////////////////
 
@@ -95,6 +102,5 @@ public class AppUserRoleService implements UserDetailsService {
         long appUserId = appUserRepository.findAppUserByUsername(username).getId();
         appUserRepository.deleteById(appUserId);
     }
-
 
 }
