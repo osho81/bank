@@ -1,8 +1,10 @@
 package com.yaelev.bank.service;
 
 import com.yaelev.bank.model.AppUser;
+import com.yaelev.bank.model.Customer;
 import com.yaelev.bank.model.Role;
 import com.yaelev.bank.repository.AppUserRepository;
+import com.yaelev.bank.repository.CustomerRepository;
 import com.yaelev.bank.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,11 +36,18 @@ public class AppUserRoleService implements UserDetailsService {
     private RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder; // Use in get/save methods hereunder
 
+    // Use for connecting Customer with useremail/username
+    private final CustomerRepository customerRepository;
+
     @Autowired // Added this constructor; lombok/hibernate issue
-    public AppUserRoleService(AppUserRepository appUserRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public AppUserRoleService(AppUserRepository appUserRepository,
+                              RoleRepository roleRepository,
+                              BCryptPasswordEncoder bCryptPasswordEncoder,
+                              CustomerRepository customerRepository) {
         this.appUserRepository = appUserRepository;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.customerRepository = customerRepository;
     }
 
 //    @Override // Implementing UserDetailsService & this method is part of Security setup
@@ -63,8 +72,9 @@ public class AppUserRoleService implements UserDetailsService {
 
     // Using merely customer table as users
     @Override // Implementing UserDetailsService & this method is part of Security setup
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser appUser = appUserRepository.findAppUserByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Customer customer = customerRepository.findCustomerByEmail(email);
+        AppUser appUser = appUserRepository.findAppUserByUserEmail(customer.getEmail());
         if (appUser == null) {
             log.error("User not found");
             throw new UsernameNotFoundException("User not found");

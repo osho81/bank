@@ -72,9 +72,9 @@ public class GeneralConfig {
             appUserRoleService.saveRole(new Role("ROLE_EMPLOYEE"));
             appUserRoleService.saveRole(new Role("ROLE_ADMIN"));
 
-            appUserRoleService.saveAppUser(new AppUser("AppUser1", "user1", "123456"));
-            appUserRoleService.saveAppUser(new AppUser("AppUser2", "user2", "234567"));
-            appUserRoleService.saveAppUser(new AppUser("AppUser3", "user3", "345678"));
+            appUserRoleService.saveAppUser(new AppUser("user1", "123456"));
+            appUserRoleService.saveAppUser(new AppUser("user2", "234567"));
+            appUserRoleService.saveAppUser(new AppUser("user3", "345678"));
 
             appUserRoleService.addAppUserRole("user1", "ROLE_USER");
             appUserRoleService.addAppUserRole("user1", "ROLE_ADMIN");

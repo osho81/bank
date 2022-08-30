@@ -13,7 +13,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> { // O
 
     // Customized operations and queries
 
-    Optional<Customer> findCustomerByEmail(String email);
+    // Optional<Customer> findCustomerByEmail(String email);
+    Customer findCustomerByEmail(String email);
 
     // Compare e.g.:
     // @Query("select c from Customer c where c.email = ?1")

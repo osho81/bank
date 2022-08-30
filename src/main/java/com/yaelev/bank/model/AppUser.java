@@ -21,7 +21,7 @@ public class AppUser {
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appuser_sequence")
     private long id;
-    private String name;
+    // private String name;
     private String username;
     private String password;
 
@@ -31,8 +31,8 @@ public class AppUser {
 
 
     // Customized constructor because of lombok/hibernate issue
-    public AppUser(String name, String username, String password) {
-        this.name = name;
+    public AppUser(String username, String password) {
+        // this.name = name;
         this.username = username;
         this.password = password;
         this.roles = new ArrayList<>();
