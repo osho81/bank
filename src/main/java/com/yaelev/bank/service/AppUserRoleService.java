@@ -51,6 +51,7 @@ public class AppUserRoleService implements UserDetailsService {
         this.customerRepository = customerRepository;
     }
 
+        // Previous version, where AppUser table is unrelated to customer table:
 //    @Override // Implementing UserDetailsService & this method is part of Security setup
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        AppUser appUser = appUserRepository.findAppUserByUsername(username);
