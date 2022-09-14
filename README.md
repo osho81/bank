@@ -12,5 +12,5 @@ Preparations for coming full-stack course within the ongoing system developer ed
 - Main Spring modules: spring web, data jpa, MySql driver. 
 - MySql & MySql-Workbench
 
-TODO:
+TODO in README:
 - print screen backend and frontend functions, searches etc.
