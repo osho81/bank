@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+// Bank app; backend part
+// Front end with react/js, see bankfrontend in github
+
 @SpringBootApplication
 public class BankApplication {
 
