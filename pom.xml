@@ -18,7 +18,7 @@
 	</properties>
 
 	<dependencies>
-<!--		Disable/comment out this jpa dependency until connected a db-->
+<!--		Disable/comment out this jpa dependency until connected a db:-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -29,7 +29,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-<!--		Security dependency added manually-->
+<!--		Security dependency added manually:-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>

@@ -23,6 +23,7 @@ public class CustomerController {
 
     private final CustomerRepository customerRepository;
 
+    // Autowire constructor, OR autowire declaration of the objects above
     @Autowired
     // "auto-instantiate" customerservice (skip new-keyword)
     // Add @Component or @Service in CustomerService class
