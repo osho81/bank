@@ -77,9 +77,12 @@ public class CustomerService {
     public Customer updateCustomer(long id, Customer customer) {
 
         // Check whether customer with given id exists in DB or not
-        Customer existingCustomer = customerRepository.findById(id).get();
-        //OR: .orElseThrow( () -> new IllegalStateException("No customer with id " + id));
-        // get() is optional; prefer orElseThrow... instead of using get(); see spring api documentation
+        Customer existingCustomer = customerRepository.findById(id)
+        .orElseThrow( () -> new IllegalStateException("No customer with id " + id));
+
+        // Alternative approach:
+        // Customer existingCustomer = customerRepository.findById(id).get();
+        // get() is optional; prefer orElseThrow approach; see spring api documentation
 
         // Check if the email is already used by any user
         Optional<Customer> foundByEmail = customerRepository.findByEmail(customer.getEmail());
