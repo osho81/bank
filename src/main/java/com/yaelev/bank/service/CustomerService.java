@@ -22,13 +22,13 @@ public class CustomerService {
 
     // Implements the interface CustomerRepository
     // (spring enables skipping "implement" keyword: https://spring.io/guides/gs/accessing-data-jpa/ )
-    private final CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository; // If autowire here, remove final
 
     // TransactionAccountRepository/Service needed for deletion, de-association of children:
     private final TransactionAccountRepository transactionAccountRepository;
     // private final TransactionAccountService transactionAccountService;
 
-    @Autowired // Autowire/inject the implemented interface
+    @Autowired // Autowire/inject the implemented interface (OR autowire object declarations above)
     public CustomerService(CustomerRepository customerRepository,
                                    TransactionAccountRepository transactionAccountRepository) {
         this.customerRepository = customerRepository;
@@ -44,7 +44,7 @@ public class CustomerService {
 
     // Get all customers
     public List<Customer> getCustomers() {
-        return (List<Customer>) customerRepository.findAll();
+        return customerRepository.findAll();
     }
 
     // Get specific customer, find by customer id
