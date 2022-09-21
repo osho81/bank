@@ -16,7 +16,7 @@ import java.util.Optional;
 // Services such as assisting CRUD operations.
 // Suitable for filtering or validating request results etc.
 
-@Service // Enables @Autowired in this class' references in other classes
+@Service // Enables @Autowired in this class and their references in other classes
 // @Component is similar to @Service but Service is more specific for this purpose
 public class CustomerService {
 
