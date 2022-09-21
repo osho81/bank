@@ -25,7 +25,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository; // If autowire here, remove final
 
     // TransactionAccountRepository/Service needed for deletion, de-association of children:
-    private final TransactionAccountRepository transactionAccountRepository;
+    private final TransactionAccountRepository transactionAccountRepository; // If autowire here, remove final
     // private final TransactionAccountService transactionAccountService;
 
     @Autowired // Autowire/inject the implemented interface (OR autowire object declarations above)
