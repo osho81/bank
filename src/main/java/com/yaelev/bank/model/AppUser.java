@@ -8,6 +8,8 @@ import java.util.Collection;
 
 // Spring Security component
 
+// TODO: also make a table for admins, and connect them to AppUser (as done with customers)
+
 @Entity
 @Data // Lombok getters/setters etc
 @NoArgsConstructor // Lombok constructors
