@@ -72,7 +72,7 @@ public class AppUserRoleService implements UserDetailsService {
 //    }
 
 
-    // Using merely customer table as users
+    // Using customer table as users
     @Override // Implementing UserDetailsService & this method is part of Security setup
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // Optional<Customer> customer = customerRepository.findByEmail(email);
