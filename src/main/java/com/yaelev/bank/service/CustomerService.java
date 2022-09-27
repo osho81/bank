@@ -57,8 +57,8 @@ public class CustomerService {
 
     //////////////////////////// CREATE //////////////////////////
 
-    // TODO: add automatic creation/update of connected AppUser in create method
-    // (and update method if needed)
+    // TODO: add automatic creation/update of connected AppUser in create customer method
+    // (and update-method if needed)
 
     public void registerNewCustomer(Customer customer) {
         Optional<Customer> foundByEmail = customerRepository.findByEmail(customer.getEmail());
