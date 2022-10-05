@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .httpBasic()
                 .and()
 
-                .csrf().disable() // Disable cross-site request forgery
+                .csrf().disable() // Disable cross-site request forgery protection
 
                 // Restrict certain path for certain users
                 // See loaded user roles/uthorities in AppUserRoleService class

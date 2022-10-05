@@ -13,8 +13,10 @@ import java.util.List;
 // REST API.
 // (while service have more specific methods such as CRUD operations)
 
-// Solving frontend cors-policy for api requests
+// Solving frontend cors-policy for api requests;
+// (not recommended approach better configure in configuration files)
 @CrossOrigin(origins = "http://localhost:3000") // points to react (spring port: 8080)
+
 @RestController // Rest API component: https://spring.io/guides/tutorials/rest/
 @RequestMapping(path = "/api/v1/customer") // i.e. http://localhost:8080/api/v1/customer
 public class CustomerController {
