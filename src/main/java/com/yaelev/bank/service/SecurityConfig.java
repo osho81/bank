@@ -32,14 +32,14 @@ public class SecurityConfig {
                 // See loaded user roles/uthorities in AppUserRoleService class
                 .authorizeHttpRequests()
 
-                .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // (ROLE_ is appended)
-//                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Alternative
-//                .antMatchers("/api/v*/t-account/**").hasAnyRole("ADMIN", "USER") // Multiple
-
                 .antMatchers(HttpMethod.GET, "/**").permitAll() // Anyone can GET anything
 //                .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("EMPLOYEE")
 //                .antMatchers(HttpMethod.PUT, "/api/v*/**").hasRole("EMPLOYEE")
 //                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
+
+                .antMatchers("/api/v*/t-account/**").hasRole("ADMIN") // (ROLE_ is appended)
+//                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Alternative
+//                .antMatchers("/api/v*/t-account/**").hasAnyRole("ADMIN", "USER") // Multiple
 
                 .anyRequest().authenticated() // User must be logged in for any request
                 .and()
