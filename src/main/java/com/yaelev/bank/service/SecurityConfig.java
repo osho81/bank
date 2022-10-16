@@ -30,7 +30,8 @@ public class SecurityConfig {
 
                 // Restrict certain path for certain users
                 // See loaded user roles/uthorities in AppUserRoleService class
-                .authorizeHttpRequests()
+//                .authorizeHttpRequests()
+                .authorizeRequests()
 
                 .antMatchers(HttpMethod.GET, "/**").permitAll() // Anyone can GET anything
 //                .antMatchers(HttpMethod.POST, "/api/v*/**").hasRole("EMPLOYEE")
@@ -41,7 +42,8 @@ public class SecurityConfig {
 //                .antMatchers("/api/v*/t-account/**").hasAuthority("ROLE_ADMIN") // Alternative
 //                .antMatchers("/api/v*/t-account/**").hasAnyRole("ADMIN", "USER") // Multiple
 
-                .anyRequest().authenticated() // User must be logged in for any request
+                // User must be logged in for any request, e.g. if missed to secure a path
+                .anyRequest().authenticated()
                 .and()
 
                 // Default spring login page; redirects to/starts at http://localhost:8080/login
