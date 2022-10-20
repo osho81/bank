@@ -139,7 +139,7 @@ public class CustomerService {
 
 
     // Method for removing relation between customer and accounts
-    // (Could also disable fk constraint checks)
+    // (Or could disable fk constraint checks)
     private Customer disassociateAccounts(long id) {
         Customer customer = customerRepository.findById(id).get();
         List<TransactionAccount> associatedAccounts = customer.getTransactionAccounts();
