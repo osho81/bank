@@ -134,6 +134,7 @@ public class CustomerService {
 
     public void deleteCustomer(long id) {
         Customer disassociatedCustomer = disassociateAccounts(id);
+        // Delete object/record now that no FK constraints exists for it
         customerRepository.deleteById(disassociatedCustomer.getId());
     }
 
@@ -149,7 +150,7 @@ public class CustomerService {
             transactionAccountRepository.save(currentAcc);
         }
 
-        return customerRepository.save(customer);
+        return customerRepository.save(customer); // Save update, & return
     }
 
 }
